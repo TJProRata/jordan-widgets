@@ -8,6 +8,46 @@
       "destination": "/pages/search-up-top.html"
     },
     {
+      "source": "/search-up-top.html",
+      "destination": "/pages/search-up-top.html"
+    },
+    {
+      "source": "/new-green.html",
+      "destination": "/pages/new-green.html"
+    },
+    {
+      "source": "/side-rail.html",
+      "destination": "/pages/side-rail.html"
+    },
+    {
+      "source": "/top-of-article-old.html",
+      "destination": "/pages/top-of-article-old.html"
+    },
+    {
+      "source": "/middle-of-article.html",
+      "destination": "/pages/middle-of-article.html"
+    },
+    {
+      "source": "/bottom-of-article-embed.html",
+      "destination": "/pages/bottom-of-article-embed.html"
+    },
+    {
+      "source": "/dynamic-cta.html",
+      "destination": "/pages/dynamic-cta.html"
+    },
+    {
+      "source": "/update-askinbio.html",
+      "destination": "/pages/update-askinbio.html"
+    },
+    {
+      "source": "/ai-search-results.html",
+      "destination": "/pages/ai-search-results.html"
+    },
+    {
+      "source": "/search-results.html",
+      "destination": "/pages/search-results.html"
+    },
+    {
       "source": "/pages/:path*",
       "destination": "/pages/:path*"
     },
