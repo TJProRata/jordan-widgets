@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   root: '.',
   build: {
     outDir: 'dist',
+    target: 'es2022',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'pages/update-askinbio.html')

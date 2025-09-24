@@ -113,22 +113,25 @@
         // Import AI Client that connects to server API
         let aiClient = null;
 
-        try {
-            const { AIClient } = await import('../assets/js/ai-client.js');
-            aiClient = new AIClient();
-            console.log('✅ AI Client loaded successfully');
+        // Initialize AI Client asynchronously
+        (async function initializeAIClient() {
+            try {
+                const { AIClient } = await import('../assets/js/ai-client.js');
+                aiClient = new AIClient();
+                console.log('✅ AI Client loaded successfully');
 
-            // Perform health check
-            const health = await aiClient.healthCheck();
-            console.log('🩺 Server health:', health);
+                // Perform health check
+                const health = await aiClient.healthCheck();
+                console.log('🩺 Server health:', health);
 
-            if (health.status === 'healthy') {
-                console.log('🚀 Server-side AI SDK ready');
+                if (health.status === 'healthy') {
+                    console.log('🚀 Server-side AI SDK ready');
+                }
+            } catch (error) {
+                console.error('❌ Error loading AI Client:', error);
+                console.log('Continuing with fallback mode');
             }
-        } catch (error) {
-            console.error('❌ Error loading AI Client:', error);
-            console.log('Continuing with fallback mode');
-        }
+        })();
 
         // AI Conversation functionality
         function addMessage(content, isUser = false) {
