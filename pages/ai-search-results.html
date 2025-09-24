@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - The Atlantic</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .search-results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 80vh;
+        }
+
+        .search-query {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+        }
+
+        .answer-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 200px;
+        }
+
+        .answer-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #34495e;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .streaming-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: #e74c3c;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .loading-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            animation: loading-bounce 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes loading-bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .sources-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+
+        .sources-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .source-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .source-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .source-icon {
+            width: 40px;
+            height: 40px;
+            background: #e74c3c;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .source-content {
+            flex: 1;
+        }
+
+        .source-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .source-description {
+            color: #6c757d;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .conversation-container {
+            margin-top: 30px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .message.user {
+            background: #e74c3c;
+            color: white;
+            margin-left: 50px;
+        }
+
+        .message.assistant {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            margin-right: 50px;
+        }
+
+        .follow-up-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .follow-up-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .follow-up-input button {
+            padding: 12px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .follow-up-input button:hover {
+            background: #c0392b;
+        }
+
+        .follow-up-input button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: #c0392b;
+            text-decoration: none;
+            color: white;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        .suggestion-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .suggestion-chip {
+            background: #e9ecef;
+            color: #495057;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .suggestion-chip:hover {
+            background: #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 19-7-7 7-7"/>
+            <path d="M19 12H5"/>
+        </svg>
+        Back
+    </a>
+
+    <div class="search-results-container">
+        <!-- Search Query Display -->
+        <div class="search-query" id="searchQuery">
+            Loading question...
+        </div>
+
+        <!-- Conversation Container -->
+        <div class="conversation-container" id="conversationContainer">
+            <!-- Messages will be added here -->
+        </div>
+
+        <!-- Follow-up Input -->
+        <div class="follow-up-input">
+            <input type="text" placeholder="Ask a follow-up question..." id="followUpInput">
+            <button id="sendButton">Send</button>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section" id="sourcesSection" style="display: none;">
+            <h3 class="sources-title">Sources & References</h3>
+            <div id="sourcesContainer">
+                <!-- Sources will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AI Chat Implementation
+        class AIChat {
+            constructor() {
+                this.messages = [];
+                this.isStreaming = false;
+                this.conversationContainer = document.getElementById('conversationContainer');
+                this.followUpInput = document.getElementById('followUpInput');
+                this.sendButton = document.getElementById('sendButton');
+                this.sourcesContainer = document.getElementById('sourcesContainer');
+
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.sendButton.addEventListener('click', () => this.handleSend());
+                this.followUpInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !this.isStreaming) {
+                        this.handleSend();
+                    }
+                });
+            }
+
+            async handleSend() {
+                const message = this.followUpInput.value.trim();
+                if (!message || this.isStreaming) return;
+
+                this.followUpInput.value = '';
+                this.sendButton.disabled = true;
+
+                // Add user message
+                this.addMessage(message, 'user');
+                this.messages.push({ role: 'user', content: message });
+
+                // Stream AI response
+                await this.streamAIResponse();
+            }
+
+            addMessage(content, role) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${role}`;
+                messageDiv.innerHTML = `<div class="answer-text">${content}</div>`;
+                this.conversationContainer.appendChild(messageDiv);
+                messageDiv.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            async streamAIResponse() {
+                this.isStreaming = true;
+
+                // Create message container for streaming
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message assistant';
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-text';
+                const cursor = document.createElement('span');
+                cursor.className = 'streaming-cursor';
+
+                messageDiv.appendChild(answerDiv);
+                messageDiv.appendChild(cursor);
+                this.conversationContainer.appendChild(messageDiv);
+
+                try {
+                    // Check if we have a real AI API endpoint
+                    const hasRealAPI = false; // Set to true when backend is available
+
+                    if (hasRealAPI) {
+                        await this.streamFromAPI(answerDiv, cursor);
+                    } else {
+                        await this.simulateStreaming(answerDiv, cursor);
+                    }
+                } catch (error) {
+                    console.error('Streaming error:', error);
+                    answerDiv.innerHTML = '<div class="error-message">Sorry, I encountered an error. Please try again.</div>';
+                } finally {
+                    cursor.style.display = 'none';
+                    this.isStreaming = false;
+                    this.sendButton.disabled = false;
+                    messageDiv.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            async streamFromAPI(answerDiv, cursor) {
+                // Real API streaming implementation
+                const response = await fetch('http://localhost:3001/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: this.messages })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API request failed: ${response.status} - ${errorText}`);
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                try {
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value, { stream: true });
+
+                        // For simple text streaming (our server sends plain text)
+                        answerDiv.textContent += chunk;
+
+                        // Auto-scroll to keep the cursor visible
+                        cursor.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }
+                } catch (streamError) {
+                    console.error('Streaming error:', streamError);
+                    throw streamError;
+                }
+            }
+
+            async simulateStreaming(answerDiv, cursor) {
+                // Get enhanced response from our Context7-integrated system
+                const latestMessage = this.messages[this.messages.length - 1];
+                const response = await this.getEnhancedResponse(latestMessage.content);
+
+                // Simulate streaming with typewriter effect
+                let currentIndex = 0;
+                const streamingSpeed = 30; // ms between characters
+
+                return new Promise((resolve) => {
+                    const typeInterval = setInterval(() => {
+                        if (currentIndex < response.text.length) {
+                            answerDiv.textContent += response.text.charAt(currentIndex);
+                            currentIndex++;
+                        } else {
+                            clearInterval(typeInterval);
+
+                            // Add suggestion chips
+                            if (response.suggestions) {
+                                this.addSuggestionChips(answerDiv, response.suggestions);
+                            }
+
+                            // Update sources
+                            if (response.sources) {
+                                this.updateSources(response.sources);
+                            }
+
+                            resolve();
+                        }
+                    }, streamingSpeed);
+                });
+            }
+
+            async getEnhancedResponse(query) {
+                // Simulate Context7-enhanced responses
+                const responses = {
+                    'ai': {
+                        text: `Artificial Intelligence is experiencing unprecedented growth, with transformer models revolutionizing how we interact with technology. From Context7's AI research documentation: Recent developments show that large language models have achieved remarkable capabilities in reasoning, creativity, and problem-solving.
+
+The current landscape is marked by rapid innovation in multimodal AI systems that can process text, images, and audio simultaneously. Industry reports indicate companies are racing to develop more efficient models that require less computational power while maintaining high performance.
+
+However, this progress comes with important considerations around bias, safety, and societal impact. Experts emphasize the need for responsible AI development that prioritizes human welfare and addresses potential risks through comprehensive testing and ethical guidelines.`,
+                        suggestions: ['What are the latest AI breakthroughs?', 'How does AI bias work?', 'Tell me about AI safety'],
+                        sources: [
+                            { title: 'AI Research Papers Database', description: 'Latest developments in machine learning', type: 'research' },
+                            { title: 'Context7 AI Documentation', description: 'Comprehensive AI development guides', type: 'documentation' },
+                            { title: 'AI Ethics Guidelines', description: 'Responsible AI development frameworks', type: 'article' }
+                        ]
+                    },
+                    'chatbot': {
+                        text: `From digital psychology research and AI documentation: Chatbots have evolved into sophisticated conversational agents using advanced natural language processing. The psychology behind chatbot engagement reveals that companies employ behavioral science techniques to maintain user interest.
+
+Modern chatbots use variable reward schedules, social validation, and personalization to create engaging experiences. Research shows this represents a shift from utility-focused tools to engagement-optimized systems designed to maximize user retention.
+
+However, this evolution raises important questions about digital wellness and AI dependency. As chatbots become more sophisticated at mimicking human conversation patterns, users may develop parasocial relationships with AI systems that could replace human connections.`,
+                        suggestions: ['How do chatbots manipulate users?', 'What are the risks of AI dependency?', 'How can I protect myself?'],
+                        sources: [
+                            { title: 'Digital Psychology Research', description: 'Stanford studies on AI engagement tactics', type: 'research' },
+                            { title: 'Conversational AI Documentation', description: 'Best practices for chatbot design', type: 'documentation' },
+                            { title: 'AI Ethics in Chat Systems', description: 'Responsible conversation design', type: 'article' }
+                        ]
+                    },
+                    'technology': {
+                        text: `From technology industry analysis and documentation: The current tech landscape is experiencing unprecedented transformation driven by AI, cloud computing, and emerging technologies. Industry reports show accelerated digital adoption across all sectors.
+
+Key trends include edge computing bringing processing closer to data sources, quantum research promising computational breakthroughs, and the democratization of AI tools making advanced technology accessible to smaller organizations.
+
+Privacy and security remain paramount as our digital footprint expands. New regulations like GDPR and emerging technologies are creating frameworks to protect user data while maintaining innovation momentum. The balance between technological advancement and human welfare continues to shape industry development.`,
+                        suggestions: ['What are emerging tech trends?', 'How does quantum computing work?', 'Tell me about tech privacy'],
+                        sources: [
+                            { title: 'Tech Industry Reports', description: 'Comprehensive technology trend analysis', type: 'research' },
+                            { title: 'Context7 Tech Documentation', description: 'Latest technology specifications', type: 'documentation' },
+                            { title: 'Technology Policy Research', description: 'Tech governance and regulation', type: 'article' }
+                        ]
+                    }
+                };
+
+                const lowerQuery = query.toLowerCase();
+
+                if (lowerQuery.includes('ai') || lowerQuery.includes('artificial intelligence')) {
+                    return responses.ai;
+                } else if (lowerQuery.includes('chatbot') || lowerQuery.includes('chat') || lowerQuery.includes('bot')) {
+                    return responses.chatbot;
+                } else if (lowerQuery.includes('technology') || lowerQuery.includes('tech')) {
+                    return responses.technology;
+                }
+
+                // Default response
+                return {
+                    text: `That's a thoughtful question that intersects with several important themes The Atlantic often explores. The relationship between technology, society, and human behavior continues to evolve in fascinating ways.
+
+From our enhanced knowledge base: Contemporary issues require nuanced analysis that considers multiple perspectives and long-term implications. Whether examining technological innovation, cultural shifts, or policy decisions, it's crucial to understand both immediate effects and broader societal trends.
+
+I'd be happy to explore any specific aspect of your question in more detail. What particular angle interests you most?`,
+                    suggestions: ['Can you elaborate on that?', 'What are the implications?', 'Tell me more'],
+                    sources: [
+                        { title: 'The Atlantic Archives', description: 'Comprehensive journalism and analysis', type: 'article' },
+                        { title: 'Expert Commentary Database', description: 'Insights from leading authorities', type: 'research' }
+                    ]
+                };
+            }
+
+            addSuggestionChips(container, suggestions) {
+                const chipsContainer = document.createElement('div');
+                chipsContainer.className = 'suggestion-chips';
+
+                suggestions.forEach(suggestion => {
+                    const chip = document.createElement('span');
+                    chip.className = 'suggestion-chip';
+                    chip.textContent = suggestion;
+                    chip.addEventListener('click', () => {
+                        this.followUpInput.value = suggestion;
+                        this.handleSend();
+                    });
+                    chipsContainer.appendChild(chip);
+                });
+
+                container.appendChild(chipsContainer);
+            }
+
+            updateSources(sources) {
+                if (!sources || sources.length === 0) return;
+
+                document.getElementById('sourcesSection').style.display = 'block';
+                this.sourcesContainer.innerHTML = '';
+
+                sources.forEach(source => {
+                    const sourceItem = document.createElement('a');
+                    sourceItem.className = 'source-item';
+                    sourceItem.href = '#';
+
+                    const iconMap = {
+                        'research': '📊',
+                        'documentation': '📚',
+                        'article': '📰',
+                        'example': '💡'
+                    };
+
+                    sourceItem.innerHTML = `
+                        <div class="source-icon">
+                            <span style="font-size: 20px;">${iconMap[source.type] || '📄'}</span>
+                        </div>
+                        <div class="source-content">
+                            <div class="source-title">${source.title}</div>
+                            <p class="source-description">${source.description}</p>
+                        </div>
+                    `;
+                    this.sourcesContainer.appendChild(sourceItem);
+                });
+            }
+
+            async initializeWithQuery(query) {
+                document.getElementById('searchQuery').textContent = query;
+                document.title = `"${query}" - AI Search Results - The Atlantic`;
+
+                // Add initial user message
+                this.addMessage(query, 'user');
+                this.messages.push({ role: 'user', content: query });
+
+                // Start streaming response
+                await this.streamAIResponse();
+            }
+        }
+
+        // Initialize the chat system
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const chat = new AIChat();
+            const query = getQueryParameter('q');
+
+            if (query) {
+                chat.initializeWithQuery(query);
+            } else {
+                document.getElementById('searchQuery').textContent = 'No search query provided';
+                document.getElementById('conversationContainer').innerHTML =
+                    '<div class="error-message">Please enter a search query to get started.</div>';
+            }
+        });
+    </script>
+</body>
+</html>

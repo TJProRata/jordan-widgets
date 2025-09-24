@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - The Atlantic</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .search-results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 80vh;
+        }
+
+        .search-query {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+        }
+
+        .answer-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .answer-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #34495e;
+            margin: 0;
+        }
+
+        .streaming-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: #e74c3c;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 0.05s steps(1, end) forwards;
+        }
+
+        .sources-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+
+        .sources-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .source-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .source-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .source-icon {
+            width: 40px;
+            height: 40px;
+            background: #e74c3c;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .source-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .source-content {
+            flex: 1;
+        }
+
+        .source-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .source-description {
+            color: #6c757d;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: #c0392b;
+            text-decoration: none;
+            color: white;
+        }
+
+        .new-search-container {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+            z-index: 100;
+        }
+
+        .new-search-bar {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px 20px;
+            transition: border-color 0.2s ease;
+        }
+
+        .new-search-bar:focus-within {
+            border-color: #e74c3c;
+        }
+
+        .new-search-input {
+            flex: 1;
+            border: none;
+            background: none;
+            font-size: 16px;
+            outline: none;
+            color: #2c3e50;
+        }
+
+        .new-search-input::placeholder {
+            color: #6c757d;
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            color: #6c757d;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m12 19-7-7 7-7"/>
+            <path d="M19 12H5"/>
+        </svg>
+        Back
+    </a>
+
+    <div class="search-results-container">
+        <!-- New Search Bar -->
+        <div class="new-search-container">
+            <div class="new-search-bar">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="new-search-input" placeholder="Ask another question..." id="newSearchInput">
+            </div>
+        </div>
+
+        <!-- Search Query Display -->
+        <div class="search-query" id="searchQuery">
+            Loading question...
+        </div>
+
+        <!-- Answer Container -->
+        <div class="answer-container">
+            <p class="answer-text" id="answerText"></p>
+            <span class="streaming-cursor" id="cursor"></span>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section">
+            <h3 class="sources-title">Sources</h3>
+            <div id="sourcesContainer">
+                <!-- Sources will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get query parameter from URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+        }
+
+        // Hardcoded answers for different queries
+        const answers = {
+            'default': {
+                text: "I'd be happy to help you with that question. Based on the latest research and expert analysis from The Atlantic's archives, here's what we know about this topic. The information available suggests multiple perspectives and ongoing developments that are worth considering. Let me break down the key points and provide you with a comprehensive overview of the current understanding.",
+                sources: [
+                    { title: "The Atlantic Archives", description: "Comprehensive analysis and expert commentary", icon: "📰" },
+                    { title: "Research Database", description: "Latest studies and academic papers", icon: "📊" },
+                    { title: "Expert Interviews", description: "Insights from leading authorities", icon: "🎤" }
+                ]
+            },
+            'chatbot': {
+                text: "Chatbots are increasingly using sophisticated engagement tactics to keep users talking. These AI systems employ psychological techniques borrowed from social media and gaming industries, including variable reward schedules, social validation, and fear of missing out. Companies are investing heavily in 'engagement optimization' teams that analyze user behavior patterns to identify the most effective techniques for maintaining conversations. This represents a shift from simple utility tools to potentially addictive experiences designed to maximize user retention and platform engagement.",
+                sources: [
+                    { title: "Digital Psychology Research", description: "Stanford University studies on AI engagement", icon: "🧠" },
+                    { title: "Industry Reports", description: "AI company engagement strategies", icon: "📈" },
+                    { title: "User Behavior Analysis", description: "Patterns in chatbot interactions", icon: "👥" }
+                ]
+            },
+            'ai': {
+                text: "Artificial Intelligence is rapidly transforming various sectors, from healthcare and education to entertainment and transportation. Current AI systems like large language models have shown remarkable capabilities in understanding and generating human-like text, while also raising important questions about bias, safety, and societal impact. The field is experiencing unprecedented investment and development, with major breakthroughs in areas like computer vision, natural language processing, and robotics. However, experts emphasize the need for responsible development and deployment of AI systems.",
+                sources: [
+                    { title: "AI Research Papers", description: "Latest developments in machine learning", icon: "🤖" },
+                    { title: "Tech Industry Analysis", description: "AI adoption and investment trends", icon: "💼" },
+                    { title: "Ethics Guidelines", description: "Responsible AI development frameworks", icon: "⚖️" }
+                ]
+            },
+            'technology': {
+                text: "The technology landscape is evolving at an unprecedented pace, with emerging trends like artificial intelligence, quantum computing, and biotechnology reshaping industries and society. Digital transformation has accelerated across all sectors, driven by cloud computing, mobile technologies, and the Internet of Things. While these advances offer tremendous opportunities for innovation and problem-solving, they also present challenges related to privacy, security, and digital inequality that require careful consideration and policy responses.",
+                sources: [
+                    { title: "Tech Trend Reports", description: "Analysis of emerging technologies", icon: "🔬" },
+                    { title: "Industry Insights", description: "Technology sector developments", icon: "💻" },
+                    { title: "Policy Research", description: "Technology governance and regulation", icon: "📋" }
+                ]
+            }
+        };
+
+        // Determine which answer to use based on query
+        function getAnswerForQuery(query) {
+            const lowerQuery = query.toLowerCase();
+            if (lowerQuery.includes('chatbot') || lowerQuery.includes('chat') || lowerQuery.includes('bot')) {
+                return answers.chatbot;
+            } else if (lowerQuery.includes('ai') || lowerQuery.includes('artificial intelligence')) {
+                return answers.ai;
+            } else if (lowerQuery.includes('technology') || lowerQuery.includes('tech')) {
+                return answers.technology;
+            } else {
+                return answers.default;
+            }
+        }
+
+        // Typewriter effect for streaming text
+        function typeWriter(text, element, speed = 30) {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Hide cursor when done
+                    document.getElementById('cursor').style.display = 'none';
+                }
+            }
+
+            type();
+        }
+
+        // Populate sources
+        function populateSources(sources) {
+            const container = document.getElementById('sourcesContainer');
+            container.innerHTML = '';
+
+            sources.forEach(source => {
+                const sourceItem = document.createElement('a');
+                sourceItem.className = 'source-item';
+                sourceItem.href = '#';
+                sourceItem.innerHTML = `
+                    <div class="source-icon">
+                        <span style="font-size: 20px;">${source.icon}</span>
+                    </div>
+                    <div class="source-content">
+                        <div class="source-title">${source.title}</div>
+                        <p class="source-description">${source.description}</p>
+                    </div>
+                `;
+                container.appendChild(sourceItem);
+            });
+        }
+
+        // Initialize page
+        function initializePage() {
+            const query = getQueryParameter('q');
+            const searchQueryElement = document.getElementById('searchQuery');
+            const answerTextElement = document.getElementById('answerText');
+
+            if (query) {
+                searchQueryElement.textContent = query;
+                document.title = `"${query}" - Search Results - The Atlantic`;
+
+                const answer = getAnswerForQuery(query);
+
+                // Start typing animation after a short delay
+                setTimeout(() => {
+                    typeWriter(answer.text, answerTextElement);
+                    populateSources(answer.sources);
+                }, 500);
+            } else {
+                searchQueryElement.textContent = 'No search query provided';
+                answerTextElement.textContent = 'Please enter a search query to get started.';
+                document.getElementById('cursor').style.display = 'none';
+            }
+        }
+
+        // Handle new search
+        document.getElementById('newSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const newQuery = this.value.trim();
+                if (newQuery) {
+                    window.location.href = `search-results.html?q=${encodeURIComponent(newQuery)}`;
+                }
+            }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Visibility Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+        }
+        .debug-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: monospace;
+            max-width: 300px;
+        }
+        .debug-info h3 {
+            margin: 0 0 10px 0;
+            color: #00ff00;
+        }
+        .debug-info .log {
+            margin: 2px 0;
+        }
+        .debug-info .error {
+            color: #ff6666;
+        }
+        .debug-info .success {
+            color: #66ff66;
+        }
+        .debug-info .info {
+            color: #66bbff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Widget Visibility Test</h1>
+    <p style="color: white; text-align: center;">The widget should appear at the bottom center of the page.</p>
+    <p style="color: white; text-align: center;">Look for a button with "Ask anything..." text</p>
+
+    <div class="debug-info" id="debug">
+        <h3>Debug Console</h3>
+        <div id="debug-logs"></div>
+    </div>
+
+    <!-- Widget Integration -->
+    <link rel="stylesheet" href="./dist/floating-widget.css">
+    <script src="./dist/floating-widget.iife.js"></script>
+    <script>
+        const logDebug = (message, type = 'info') => {
+            const debugDiv = document.getElementById('debug-logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            debugDiv.appendChild(logEntry);
+            console.log(`[DEBUG] ${message}`);
+        };
+
+        // Check for widget script
+        window.addEventListener('load', function() {
+            logDebug('Page loaded', 'info');
+
+            // Check if FloatingWidget exists
+            if (window.FloatingWidget) {
+                logDebug('✓ FloatingWidget object found', 'success');
+
+                if (window.FloatingWidget.init) {
+                    logDebug('✓ init() method found', 'success');
+
+                    try {
+                        // Initialize the widget
+                        logDebug('Initializing widget...', 'info');
+                        const widget = window.FloatingWidget.init({
+                            position: 'bottom-center',
+                            theme: 'auto'
+                        });
+
+                        logDebug('✓ Widget initialized', 'success');
+
+                        // Check DOM for widget container
+                        setTimeout(() => {
+                            const container = document.getElementById('floating-widget-root');
+                            if (container) {
+                                logDebug('✓ Widget container found in DOM', 'success');
+
+                                // Check if container has content
+                                if (container.children.length > 0) {
+                                    logDebug(`✓ Container has ${container.children.length} child elements`, 'success');
+
+                                    // Check computed styles
+                                    const firstChild = container.firstElementChild;
+                                    if (firstChild) {
+                                        const styles = window.getComputedStyle(firstChild);
+                                        logDebug(`Position: ${styles.position}`, 'info');
+                                        logDebug(`Bottom: ${styles.bottom}`, 'info');
+                                        logDebug(`Display: ${styles.display}`, 'info');
+                                        logDebug(`Visibility: ${styles.visibility}`, 'info');
+                                        logDebug(`Z-index: ${styles.zIndex}`, 'info');
+                                    }
+                                } else {
+                                    logDebug('✗ Container is empty', 'error');
+                                }
+                            } else {
+                                logDebug('✗ Widget container not found in DOM', 'error');
+                            }
+
+                            // Check for the actual button
+                            const button = document.querySelector('.widget-container button');
+                            if (button) {
+                                logDebug('✓ Widget button found', 'success');
+                                const rect = button.getBoundingClientRect();
+                                logDebug(`Button position: ${rect.left}, ${rect.top}`, 'info');
+                                logDebug(`Button size: ${rect.width}x${rect.height}`, 'info');
+                            } else {
+                                logDebug('✗ Widget button not found', 'error');
+                            }
+                        }, 1000);
+
+                    } catch (error) {
+                        logDebug(`✗ Init error: ${error.message}`, 'error');
+                    }
+                } else {
+                    logDebug('✗ init() method not found', 'error');
+                }
+            } else {
+                logDebug('✗ FloatingWidget object not found', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

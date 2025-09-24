@@ -1,0 +1,218 @@
+/* Import Work Sans font */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom gradient border with mask-composite */
+.compact-gradient-border {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid transparent;
+}
+
+.compact-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(135deg, #C081FF 0%, #B8FFE3 100%);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}
+
+/* Widget-specific styles */
+#compact-widget-container {
+  font-family: 'Work Sans', sans-serif;
+
+  /* Ensure widget is isolated from page styles */
+  all: initial;
+  font-family: 'Work Sans', sans-serif;
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Reset any inherited styles that might interfere */
+#compact-widget-container * {
+  box-sizing: border-box;
+}
+
+/* Ensure Tailwind classes work */
+#compact-widget-container .relative {
+  position: relative;
+}
+
+#compact-widget-container .group {
+  /* Group hover states */
+}
+
+#compact-widget-container .w-\[180px\] {
+  width: 180px;
+}
+
+#compact-widget-container .h-\[52px\] {
+  height: 52px;
+}
+
+#compact-widget-container .rounded-full {
+  border-radius: 9999px;
+}
+
+#compact-widget-container .p-\[2px\] {
+  padding: 2px;
+}
+
+#compact-widget-container .bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+#compact-widget-container .from-\[\#C081FF\] {
+  --tw-gradient-from: #C081FF;
+  --tw-gradient-to: rgb(192 129 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+#compact-widget-container .to-\[\#B8FFE3\] {
+  --tw-gradient-to: #B8FFE3;
+}
+
+#compact-widget-container .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+#compact-widget-container .hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+#compact-widget-container .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+#compact-widget-container .duration-300 {
+  transition-duration: 300ms;
+}
+
+#compact-widget-container .ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+#compact-widget-container .hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+#compact-widget-container .w-full {
+  width: 100%;
+}
+
+#compact-widget-container .h-full {
+  height: 100%;
+}
+
+#compact-widget-container .w-\[180px\] {
+  width: 180px;
+}
+
+#compact-widget-container .h-\[52px\] {
+  height: 52px;
+}
+
+#compact-widget-container .bg-white\/25 {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#compact-widget-container .backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#compact-widget-container .border {
+  border-width: 1px;
+}
+
+#compact-widget-container .border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+#compact-widget-container .shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+#compact-widget-container .drop-shadow-sm {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+#compact-widget-container .flex {
+  display: flex;
+}
+
+#compact-widget-container .items-center {
+  align-items: center;
+}
+
+#compact-widget-container .justify-center {
+  justify-content: center;
+}
+
+#compact-widget-container .px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+#compact-widget-container .gap-2 {
+  gap: 0.5rem;
+}
+
+#compact-widget-container .text-white {
+  color: white;
+}
+
+#compact-widget-container .text-\[15px\] {
+  font-size: 15px;
+}
+
+#compact-widget-container .font-medium {
+  font-weight: 500;
+}
+
+#compact-widget-container .tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+#compact-widget-container .scale-\[0\.6\] {
+  transform: scale(0.6);
+}
+
+#compact-widget-container .origin-center {
+  transform-origin: center;
+}
+
+/* Gradient border class for widget container */
+#compact-widget-container .compact-gradient-border {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid transparent;
+}
+
+#compact-widget-container .compact-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  background: linear-gradient(135deg, #C081FF 0%, #B8FFE3 100%);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}

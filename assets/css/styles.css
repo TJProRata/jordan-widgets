@@ -1,0 +1,1386 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #2c2c2c;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Styles */
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    height: 50px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logo {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo-image {
+    height: 100%;
+    width: auto;
+    display: block;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 16px;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.nav-item {
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    color: #2c2c2c;
+    text-decoration: underline;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-name {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Georgia, serif;
+    color: #2c2c2c;
+}
+
+.sign-in {
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.subscribe-btn {
+    background: #d73502;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.subscribe-btn:hover {
+    background: #c22f02;
+}
+
+/* Main Content Layout */
+.main-content {
+    padding: 40px 0;
+}
+
+.main-content .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Article Styles */
+.article {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.article-header {
+    margin-bottom: 32px;
+}
+
+.article-category {
+    color: #d73502;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.article-title {
+    font-size: 42px;
+    line-height: 1.2;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    margin-bottom: 16px;
+    color: #2c2c2c;
+}
+
+.article-subtitle {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 16px;
+    font-family: Georgia, serif;
+}
+
+.article-meta {
+    color: #666;
+    font-size: 14px;
+}
+
+.author {
+    color: #2c2c2c;
+    font-weight: 500;
+}
+
+/* Article Image */
+.article-image {
+    margin-bottom: 32px;
+}
+
+.article-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.image-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 12px;
+    color: #666;
+}
+
+.share-btn {
+    background: none;
+    border: 1px solid #e5e5e5;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #666;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Article Body Improvements */
+.article-body {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* Article Text */
+.article-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #2c2c2c;
+    margin-bottom: 28px;
+    font-family: Georgia, serif;
+}
+
+.article-text:first-of-type {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.article-text:first-of-type::first-letter {
+    font-size: 72px;
+    font-weight: bold;
+    float: left;
+    line-height: 60px;
+    padding-right: 8px;
+    margin-top: 6px;
+    font-family: Georgia, serif;
+}
+
+/* Clean Divider */
+.article-divider {
+    width: 100px;
+    height: 1px;
+    background: #d73502;
+    margin: 48px auto;
+}
+
+/* Author Section */
+.author-section {
+    margin: 40px 0;
+    padding: 32px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.author-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.author-bio {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.author-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #ddd;
+}
+
+.author-info h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.author-info p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* Explore Section */
+.explore-section {
+    margin: 40px 0;
+}
+
+.explore-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.topic-tag {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f5f5f5;
+    color: #2c2c2c;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.topic-tag:hover {
+    background: #e5e5e5;
+}
+
+
+/* Search Widget */
+.search-widget-container {
+    background: transparent;
+    padding: 20px 0;
+    border: none;
+    position: relative;
+}
+
+.search-widget-container .expandable-search-widget {
+    padding-left: 0px;
+}
+
+/* Expandable Search Widget */
+.expandable-search-widget {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.search-chat-button {
+    width: 103.18px;
+    height: 51px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    padding: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 4px 15px rgba(253, 181, 0, 0.25),
+        0 4px 20px rgba(219, 83, 105, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Inner white background for button */
+.search-chat-button::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    z-index: -1;
+}
+
+/* Button content styling */
+.search-chat-button-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.search-chat-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-chat-button:active {
+    transform: scale(0.95);
+}
+
+.search-chat-button svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) scale(0);
+    transform-origin: left center;
+    width: 33.33%;
+    max-width: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-bar-container.expanded {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.expandable-search-widget.expanded .search-chat-button {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* Suggested Questions */
+.suggested-questions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    padding: 16px;
+    margin-top: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.suggested-questions.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.suggested-question {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: transparent;
+    border: 1px solid rgba(253, 181, 0, 0.2);
+    border-radius: 8px;
+    color: #2c3e50;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.suggested-question:last-child {
+    margin-bottom: 0;
+}
+
+.suggested-question:hover {
+    background: linear-gradient(135deg, rgba(253, 181, 0, 0.1) 0%, rgba(219, 83, 105, 0.1) 50%, rgba(137, 127, 226, 0.1) 100%);
+    border-color: rgba(253, 181, 0, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.suggested-question:active {
+    transform: translateY(0);
+}
+
+
+/* Mobile responsive design for expandable search */
+@media (max-width: 768px) {
+    .expandable-search-widget {
+        left: 10px;
+        width: calc(100vw - 20px);
+    }
+
+    .search-chat-button {
+        width: 56px;
+        height: 56px;
+    }
+
+    .search-chat-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.search-widget {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(
+        135deg,
+        #FDB500 0%,
+        #DB5369 50%,
+        #897FE2 100%
+    );
+    border-radius: 25px;
+    padding: 3px;
+    box-shadow:
+        0 4px 15px rgba(253, 181, 0, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(253, 181, 0, 0.35),
+        0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.search-input-wrapper:focus-within {
+    transform: translateY(-1px);
+    box-shadow:
+        0 6px 20px rgba(253, 181, 0, 0.4),
+        0 12px 30px rgba(0, 0, 0, 0.2),
+        0 0 0 4px rgba(253, 181, 0, 0.15);
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 50px 12px 20px;
+    border: none;
+    border-radius: 22px;
+    font-size: 16px;
+    background: #fff;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    font-weight: 400;
+    color: #2c2c2c;
+    line-height: 1.5;
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus::placeholder {
+    color: #ccc;
+    transform: translateX(5px);
+}
+
+.search-input:focus {
+    box-shadow:
+        0 0 0 3px rgba(251, 181, 0, 0.2),
+        inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    background: #fff;
+}
+
+
+.search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #5a9fd4 0%, #4285f4 100%);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+    box-shadow:
+        0 2px 8px rgba(90, 159, 212, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, #4a8bc2 0%, #3367d6 100%);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow:
+        0 4px 12px rgba(90, 159, 212, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.search-button:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow:
+        0 1px 4px rgba(90, 159, 212, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-button svg {
+    width: 16px;
+    height: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-button:hover svg {
+    transform: scale(1.1);
+}
+
+.search-button:active svg {
+    transform: scale(0.9);
+}
+
+/* Footer */
+.site-footer {
+    background: #f5f5f5;
+    padding: 40px 0;
+    margin-top: 80px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .container {
+        padding: 0 30px;
+    }
+
+    .nav-menu {
+        gap: 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .nav-menu {
+        gap: 20px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .site-name {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 32px;
+    }
+
+    .main-content .container {
+        padding: 0 20px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .search-widget {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .search-input {
+        font-size: 16px;
+        padding: 10px 45px 10px 16px;
+    }
+
+    .search-button {
+        width: 28px;
+        height: 28px;
+        right: 6px;
+    }
+
+    .search-button svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Middle of Article Search Widget */
+.article-body .search-widget-container {
+    background: transparent;
+    padding: 32px 0;
+    border: none;
+    margin: 24px 0;
+}
+
+.article-body .search-widget {
+    max-width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .article-body .search-widget-container {
+        padding: 24px 0;
+        margin: 16px 0;
+    }
+}
+
+/* Bottom of Article Search Widget */
+.explore-section + .search-widget-container {
+    background: transparent;
+    padding: 40px 0;
+    margin: 40px 0 0 0;
+    border: none;
+    border-radius: 0;
+}
+
+.explore-section + .search-widget-container .search-widget {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .explore-section + .search-widget-container {
+        padding: 32px 0;
+        margin: 32px 0 0 0;
+    }
+}
+
+/* Sticky Floating Search Widget */
+.sticky-search-widget {
+    position: fixed;
+    bottom: 15px;
+    right: 120px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 51px;
+    width: auto;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Widget inner wrapper for animation */
+.widget-inner {
+    position: relative;
+    width: 103.18px;
+    height: 51px;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    border-radius: 25px;
+    padding: 3px;
+    box-shadow:
+        0 4px 15px rgba(253, 181, 0, 0.25),
+        0 4px 20px rgba(219, 83, 105, 0.25);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Inner white background for collapsed state */
+.widget-inner::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    z-index: 1;
+}
+
+/* Collapsed state */
+.sticky-search-widget.collapsed .widget-inner {
+    width: 103.18px;
+}
+
+/* Expanded state */
+.sticky-search-widget.expanded .widget-inner {
+    width: 450px;
+    max-width: calc(100vw - 140px);
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Hide the white background in expanded state */
+.sticky-search-widget.expanded .widget-inner::before {
+    display: none;
+}
+
+.sticky-search-widget.collapsed .sticky-search-container {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky-search-widget.expanded .sticky-search-container {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* Widget toggle button */
+.widget-toggle-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 103.18px;
+    height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+.sticky-search-widget.expanded .widget-toggle-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sticky-search-widget.collapsed .widget-toggle-btn:hover {
+    transform: scale(1.05);
+}
+
+.sticky-search-widget.collapsed .widget-toggle-btn .search-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.sticky-search-widget.collapsed .widget-toggle-btn .btn-text {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Search container positioning */
+.sticky-search-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+}
+
+.sticky-search-container .search-input-wrapper {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    border-radius: 25px;
+    padding: 3px;
+    box-shadow:
+        0 4px 15px rgba(253, 181, 0, 0.25),
+        0 4px 20px rgba(219, 83, 105, 0.25);
+    display: flex;
+    align-items: center;
+}
+
+.sticky-search-container {
+    position: relative;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    pointer-events: all;
+}
+
+.sticky-search-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        #FDB500 0%,
+        #DB5369 50%,
+        #897FE2 100%
+    );
+    z-index: -1;
+}
+
+.sticky-search-widget .search-input-wrapper {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+}
+
+.sticky-search-widget .search-input {
+    width: 100%;
+    padding: 10px 45px 10px 16px;
+    border: none;
+    border-radius: 22px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+.sticky-search-widget .search-input:focus {
+    box-shadow: 0 0 0 3px rgba(251, 181, 0, 0.2);
+}
+
+.sticky-search-widget .search-button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #5a9fd4;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.sticky-search-widget .search-button:hover {
+    background: #4a8bc2;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.sticky-search-widget .search-button svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Animation for expanding */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scaleX(0.3);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .sticky-search-widget {
+        max-width: 100%;
+        padding: 0 15px;
+        bottom: 15px;
+    }
+
+    .sticky-search-container {
+        padding: 6px;
+    }
+
+    .sticky-search-widget .search-input {
+        padding: 8px 40px 8px 14px;
+        font-size: 14px;
+    }
+
+    .sticky-search-widget .search-button {
+        width: 24px;
+        height: 24px;
+        right: 4px;
+    }
+
+    .sticky-search-widget .search-button svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Expandable Chat Widget */
+.expandable-chat-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+}
+
+.chat-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.chat-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat-button:active {
+    transform: scale(0.95);
+}
+
+.chat-button svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-search-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 350px;
+    height: 56px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: scale(0);
+    transform-origin: bottom right;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.chat-search-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    z-index: -1;
+}
+
+.chat-search-container.expanded {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-search-container.expanded + .chat-button {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.chat-search-container .search-input-wrapper {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-search-container .search-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 45px 0 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    color: #2c2c2c;
+}
+
+.chat-search-container .search-input::placeholder {
+    color: #999;
+}
+
+.chat-search-container .search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #5a9fd4;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.chat-search-container .search-button:hover {
+    background: #4a8bc2;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.close-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    z-index: 3;
+}
+
+.close-button:hover {
+    background: rgba(0, 0, 0, 0.15);
+    color: #333;
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    .expandable-chat-widget {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .chat-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .chat-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .chat-search-container {
+        width: 280px;
+        height: 48px;
+        border-radius: 24px;
+    }
+
+    .chat-search-container .search-input {
+        padding: 0 40px 0 16px;
+        font-size: 14px;
+    }
+
+    .chat-search-container .search-button,
+    .close-button {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chat-search-container .search-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Top-Left Expandable Chat Widget */
+.expandable-chat-widget-topleft {
+    position: fixed;
+    left: 20px;
+    top: 80px;
+    z-index: 9999;
+}
+
+.chat-button-topleft {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.chat-button-topleft:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat-button-topleft:active {
+    transform: scale(0.95);
+}
+
+.chat-button-topleft svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-search-container-topleft {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 350px;
+    height: 56px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: scale(0);
+    transform-origin: top left;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.chat-search-container-topleft::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+    z-index: -1;
+}
+
+.chat-search-container-topleft.expanded {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-search-container-topleft.expanded + .chat-button-topleft {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.chat-search-container-topleft .search-input-wrapper {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-search-container-topleft .search-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 45px 0 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    color: #2c2c2c;
+}
+
+.chat-search-container-topleft .search-input::placeholder {
+    color: #999;
+}
+
+.chat-search-container-topleft .search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #5a9fd4;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.chat-search-container-topleft .search-button:hover {
+    background: #4a8bc2;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.chat-search-container-topleft .close-button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    z-index: 3;
+}
+
+.chat-search-container-topleft .close-button:hover {
+    background: rgba(0, 0, 0, 0.15);
+    color: #333;
+}
+
+/* Mobile responsive design for top-left widget */
+@media (max-width: 768px) {
+    .expandable-chat-widget-topleft {
+        left: 15px;
+        top: 70px;
+    }
+
+    .chat-button-topleft {
+        width: 48px;
+        height: 48px;
+    }
+
+    .chat-button-topleft svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .chat-search-container-topleft {
+        width: 280px;
+        height: 48px;
+        border-radius: 24px;
+    }
+
+    .chat-search-container-topleft .search-input {
+        padding: 0 40px 0 16px;
+        font-size: 14px;
+    }
+
+    .chat-search-container-topleft .search-button,
+    .chat-search-container-topleft .close-button {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chat-search-container-topleft .search-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}

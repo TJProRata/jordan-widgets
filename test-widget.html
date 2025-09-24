@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        h1 {
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Floating Widget Test</h1>
+    <p style="color: white; text-align: center;">The widget should appear at the bottom center of the page.</p>
+
+    <!-- Floating Widget -->
+    <link rel="stylesheet" href="./floating-widget/dist/floating-widget.css">
+    <script src="./floating-widget/dist/floating-widget.iife.js"></script>
+    <script>
+        // Wait for script to load
+        window.addEventListener('load', function() {
+            console.log('[Test] Checking for FloatingWidget...');
+            if (window.FloatingWidget && window.FloatingWidget.init) {
+                console.log('[Test] Initializing widget...');
+                try {
+                    window.FloatingWidget.init({
+                        position: 'bottom-center',
+                        theme: 'auto'
+                    });
+                    console.log('[Test] Widget initialized!');
+                } catch (error) {
+                    console.error('[Test] Init error:', error);
+                }
+            } else {
+                console.error('[Test] FloatingWidget not found');
+            }
+        });
+    </script>
+</body>
+</html>
