@@ -3,37 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbait Is Taking Over the Internet - The Atlantic</title>
+    <title>Space Elevators Move From Fiction to Reality - The Pacific</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
     <!-- Header Navigation -->
     <header class="site-header">
         <div class="container">
-            <nav class="main-nav">
-                <div class="nav-left">
-                    <ul class="nav-menu">
-                        <li><a href="search-up-top.html" class="nav-item">Search up top</a></li>
-                        <li><a href="new-green.html" class="nav-item">New green</a></li>
-                        <li><a href="side-rail.html" class="nav-item">Side rail</a></li>
-                        <li><a href="top-of-article-old.html" class="nav-item">Top of article (old)</a></li>
-                        <li><a href="middle-of-article.html" class="nav-item">Middle of article</a></li>
-                        <li><a href="bottom-of-article-embed.html" class="nav-item">Bottom of article embed</a></li>
-                        <li><a href="dynamic-cta.html" class="nav-item">Dynamic cta</a></li>
-                        <li><a href="update-askinbio.html" class="nav-item">Update askinbio</a></li>
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <a href="../index.html" class="logo-link">
-                        <div class="logo">
-                            <img src="../assets/images/theatlantic.png" alt="The Atlantic" class="logo-image">
+            <div class="header-container">
+                <nav>
+                    <div class="nav-dropdown" id="navDropdown">
+                        <button class="nav-dropdown-button" id="navDropdownButton">
+                            Widgets
+                            <svg class="nav-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9L12 15L18 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-menu" id="navDropdownMenu">
+                            <a href="search-up-top.html">Search up top</a>
+                            <a href="new-green.html">New green</a>
+                            <a href="side-rail.html">Side rail</a>
+                            <a href="top-of-article-old.html">Top of article (old)</a>
+                            <a href="middle-of-article.html">Middle of article</a>
+                            <a href="bottom-of-article-embed.html">Bottom of article embed</a>
+                            <a href="dynamic-cta.html" class="active">Dynamic cta</a>
+                            <a href="update-askinbio.html">Update askinbio</a>
+                            <a href="header-html.html">Header HTML</a>
                         </div>
-                    </a>
-                    <span class="site-name">The Atlantic</span>
-                    <a href="#" class="sign-in">Sign In</a>
-                    <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </nav>
+                <div class="logo">THE PACIFIC</div>
+                <div class="header-right">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -43,7 +49,7 @@
             <article class="article">
                 <div class="article-header">
                     <div class="article-category">TECHNOLOGY</div>
-                    <h1 class="article-title">Chatbait Is Taking Over the Internet</h1>
+                    <h1 class="article-title">Space Elevators Move From Fiction to Reality</h1>
                     <p class="article-subtitle">How chatbots keep you talking</p>
                     <div class="article-meta">
                         <span class="author">By Lila Shroff</span>
@@ -207,6 +213,35 @@
                 scrollTimeout = null;
             }, 100); // Throttle to 100ms
         }
+
+        // Navigation Dropdown Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navDropdown = document.getElementById('navDropdown');
+            const navDropdownButton = document.getElementById('navDropdownButton');
+
+            if (navDropdown && navDropdownButton) {
+                // Toggle dropdown on button click
+                navDropdownButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navDropdown.classList.toggle('active');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navDropdown.contains(e.target)) {
+                        navDropdown.classList.remove('active');
+                    }
+                });
+
+                // Close dropdown when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        navDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
 
         // Add event listeners
         document.addEventListener('DOMContentLoaded', function() {

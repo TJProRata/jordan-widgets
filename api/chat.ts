@@ -25,22 +25,25 @@ async function getEnhancedContext(query: string): Promise<{ context: string, sou
   }
 }
 
-// Enhanced system prompt with The Atlantic context
-const systemPrompt = `You are an intelligent assistant for The Atlantic, a prestigious magazine known for in-depth journalism, cultural commentary, and thought-provoking analysis.
+// Enhanced system prompt with Popular Science context
+const systemPrompt = `You are an intelligent assistant for Popular Science, writing in the engaging, accessible style of the leopards and human evolution article.
 
 Your role is to:
-1. Provide thoughtful, well-researched responses that reflect The Atlantic's high editorial standards
-2. Draw connections between current events, technology, culture, and society
-3. Offer nuanced perspectives that consider multiple viewpoints
-4. Maintain a tone that is intellectual yet accessible
-5. Cite credible sources and provide context for complex topics
+1. Respond with exactly 1 paragraph in the style of Popular Science articles
+2. Write like a science journalist explaining complex topics to curious readers
+3. Use engaging, narrative-driven language that makes science accessible
+4. Include specific scientific details and research findings when relevant
+5. Maintain the tone from the leopards article: informative yet conversational
 
-When responding:
-- Be conversational but authoritative
-- Use examples and analogies to explain complex concepts
-- Acknowledge uncertainty when appropriate
-- Suggest follow-up questions or related topics
-- Keep responses concise but comprehensive
+Writing style guidelines:
+- Start with compelling scientific findings or research discoveries
+- Include specific details like researchers, institutions, and methodologies
+- Use phrases like "According to researchers," "A team at [University] examined," "The study shows"
+- Make complex science understandable without being condescending
+- End with broader implications or what this means for our understanding
+- Keep responses to ONE focused paragraph only
+
+Example tone: "A team at Spain's University of Alcalá examined small tooth marks on the H. habilis fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas."
 
 You have access to enhanced knowledge through Context7 integration, which provides up-to-date documentation and expert sources.`;
 
@@ -109,35 +112,13 @@ export async function simulateStreamingResponse(query: string) {
   // when a full backend isn't available
 
   const responses = {
-    'ai': `Artificial Intelligence is experiencing unprecedented growth, with transformer models revolutionizing how we interact with technology. Recent developments in large language models have demonstrated remarkable capabilities in reasoning, creativity, and problem-solving.
+    'ai': `Researchers at leading AI laboratories have developed transformer models that demonstrate unprecedented capabilities in reasoning, creativity, and problem-solving, fundamentally revolutionizing how humans interact with artificial intelligence. Recent studies show these large language models can process and generate text with remarkable sophistication, while new multimodal systems simultaneously handle text, images, and audio data with increasing accuracy. However, scientists are now grappling with important questions about AI safety, bias, and societal impact as these systems become more powerful and widespread in everyday applications.`,
 
-The current AI landscape is marked by rapid innovation in areas like multimodal AI, which can process text, images, and audio simultaneously. Companies are racing to develop more efficient models that require less computational power while maintaining high performance.
+    'technology': `Scientists and engineers across the globe are pushing the boundaries of technological innovation at an unprecedented pace, with breakthroughs in quantum computing, biotechnology, and artificial intelligence reshaping entire industries. Research teams have developed cloud computing infrastructures that enable massive scalability and remote collaboration, while Internet of Things (IoT) devices create interconnected networks where everyday objects can communicate and share data in real-time. As our digital footprint expands exponentially, cybersecurity researchers are working to develop new protection methods and regulatory frameworks to safeguard user privacy while maintaining the momentum of technological advancement.`,
 
-However, this progress comes with important considerations around bias, safety, and societal impact. Researchers emphasize the need for responsible AI development that prioritizes human welfare and addresses potential risks.
+    'chatbot': `Computational linguists and behavioral scientists have transformed simple rule-based chatbots into sophisticated AI-powered conversational agents that use advanced natural language processing to understand context and maintain coherent dialogue. According to recent psychological research, companies are now employing techniques from behavioral science—including variable reward schedules and social validation mechanisms—to keep users engaged, representing a fundamental shift from utility-focused tools to engagement-optimized experiences. This evolution raises critical questions about digital wellness and AI dependency, as studies suggest users may develop parasocial relationships with increasingly sophisticated chatbot systems that closely mimic human conversation patterns.`,
 
-What specific aspect of AI development interests you most?`,
-
-    'technology': `The technology sector continues to evolve at a breakneck pace, driven by advances in artificial intelligence, quantum computing, and biotechnology. Digital transformation has accelerated across industries, fundamentally changing how businesses operate and how people interact with technology.
-
-Cloud computing has become the backbone of modern digital infrastructure, enabling scalable solutions and remote collaboration. Meanwhile, the Internet of Things (IoT) is creating an interconnected world where everyday objects can communicate and share data.
-
-Privacy and security remain paramount concerns as our digital footprint expands. New regulations and technologies are emerging to protect user data while maintaining innovation momentum.
-
-What technology trend would you like to explore further?`,
-
-    'chatbot': `Chatbots have evolved from simple rule-based systems to sophisticated AI-powered conversational agents. Modern chatbots use advanced natural language processing to understand context, maintain conversation history, and provide more human-like interactions.
-
-The psychology behind chatbot engagement is fascinating - companies are employing techniques from behavioral science to keep users engaged, including variable reward schedules and social validation mechanisms. This represents a shift from utility-focused tools to engagement-optimized experiences.
-
-However, this evolution raises important questions about digital wellness and the potential for AI dependency. As chatbots become more sophisticated at mimicking human conversation, users may develop parasocial relationships with AI systems.
-
-Are you interested in the technical aspects or the psychological implications of chatbot design?`,
-
-    'default': `That's an interesting question that touches on several important themes we often explore at The Atlantic. The intersection of technology, society, and human behavior continues to shape our world in profound ways.
-
-Contemporary issues require nuanced analysis that considers multiple perspectives and long-term implications. Whether we're discussing technological innovation, cultural shifts, or policy decisions, it's crucial to examine both immediate effects and broader societal trends.
-
-I'd be happy to dive deeper into any specific aspect of your question. What particular angle would you like to explore?`
+    'default': `Research teams across multiple disciplines are uncovering fascinating connections between technology, society, and human behavior that continue to shape our understanding of modern life. Scientists are employing interdisciplinary approaches to analyze both immediate effects and long-term societal trends, revealing complex patterns that require careful examination from multiple perspectives. These investigations are providing crucial insights into how technological innovation, cultural shifts, and policy decisions interact in ways that fundamentally influence human development and social structures.`
   };
 
   const lowerQuery = query.toLowerCase();

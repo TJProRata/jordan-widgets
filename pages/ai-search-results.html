@@ -400,30 +400,18 @@
             }
 
             async getEnhancedResponse(query) {
-                // Simulate Context7-enhanced responses
+                // Popular Science style responses
                 const responses = {
                     'ai': {
-                        text: `Artificial Intelligence is experiencing unprecedented growth, with transformer models revolutionizing how we interact with technology. From Context7's AI research documentation: Recent developments show that large language models have achieved remarkable capabilities in reasoning, creativity, and problem-solving.
-
-The current landscape is marked by rapid innovation in multimodal AI systems that can process text, images, and audio simultaneously. Industry reports indicate companies are racing to develop more efficient models that require less computational power while maintaining high performance.
-
-However, this progress comes with important considerations around bias, safety, and societal impact. Experts emphasize the need for responsible AI development that prioritizes human welfare and addresses potential risks through comprehensive testing and ethical guidelines.`,
+                        text: `Researchers at leading AI laboratories have developed transformer models that demonstrate unprecedented capabilities in reasoning, creativity, and problem-solving, fundamentally revolutionizing how humans interact with artificial intelligence. Recent studies show these large language models can process and generate text with remarkable sophistication, while new multimodal systems simultaneously handle text, images, and audio data with increasing accuracy. However, scientists are now grappling with important questions about AI safety, bias, and societal impact as these systems become more powerful and widespread in everyday applications.`,
                         suggestions: ['What are the latest AI breakthroughs?', 'How does AI bias work?', 'Tell me about AI safety']
                     },
                     'chatbot': {
-                        text: `From digital psychology research and AI documentation: Chatbots have evolved into sophisticated conversational agents using advanced natural language processing. The psychology behind chatbot engagement reveals that companies employ behavioral science techniques to maintain user interest.
-
-Modern chatbots use variable reward schedules, social validation, and personalization to create engaging experiences. Research shows this represents a shift from utility-focused tools to engagement-optimized systems designed to maximize user retention.
-
-However, this evolution raises important questions about digital wellness and AI dependency. As chatbots become more sophisticated at mimicking human conversation patterns, users may develop parasocial relationships with AI systems that could replace human connections.`,
+                        text: `Computational linguists and behavioral scientists have transformed simple rule-based chatbots into sophisticated AI-powered conversational agents that use advanced natural language processing to understand context and maintain coherent dialogue. According to recent psychological research, companies are now employing techniques from behavioral science—including variable reward schedules and social validation mechanisms—to keep users engaged, representing a fundamental shift from utility-focused tools to engagement-optimized experiences. This evolution raises critical questions about digital wellness and AI dependency, as studies suggest users may develop parasocial relationships with increasingly sophisticated chatbot systems that closely mimic human conversation patterns.`,
                         suggestions: ['How do chatbots manipulate users?', 'What are the risks of AI dependency?', 'How can I protect myself?']
                     },
                     'technology': {
-                        text: `From technology industry analysis and documentation: The current tech landscape is experiencing unprecedented transformation driven by AI, cloud computing, and emerging technologies. Industry reports show accelerated digital adoption across all sectors.
-
-Key trends include edge computing bringing processing closer to data sources, quantum research promising computational breakthroughs, and the democratization of AI tools making advanced technology accessible to smaller organizations.
-
-Privacy and security remain paramount as our digital footprint expands. New regulations like GDPR and emerging technologies are creating frameworks to protect user data while maintaining innovation momentum. The balance between technological advancement and human welfare continues to shape industry development.`,
+                        text: `Scientists and engineers across the globe are pushing the boundaries of technological innovation at an unprecedented pace, with breakthroughs in quantum computing, biotechnology, and artificial intelligence reshaping entire industries. Research teams have developed cloud computing infrastructures that enable massive scalability and remote collaboration, while Internet of Things (IoT) devices create interconnected networks where everyday objects can communicate and share data in real-time. As our digital footprint expands exponentially, cybersecurity researchers are working to develop new protection methods and regulatory frameworks to safeguard user privacy while maintaining the momentum of technological advancement.`,
                         suggestions: ['What are emerging tech trends?', 'How does quantum computing work?', 'Tell me about tech privacy']
                     }
                 };
@@ -438,13 +426,9 @@ Privacy and security remain paramount as our digital footprint expands. New regu
                     return responses.technology;
                 }
 
-                // Default response
+                // Default response in Popular Science style
                 return {
-                    text: `That's a thoughtful question that intersects with several important themes The Atlantic often explores. The relationship between technology, society, and human behavior continues to evolve in fascinating ways.
-
-From our enhanced knowledge base: Contemporary issues require nuanced analysis that considers multiple perspectives and long-term implications. Whether examining technological innovation, cultural shifts, or policy decisions, it's crucial to understand both immediate effects and broader societal trends.
-
-I'd be happy to explore any specific aspect of your question in more detail. What particular angle interests you most?`,
+                    text: `Research teams across multiple disciplines are uncovering fascinating connections between technology, society, and human behavior that continue to shape our understanding of modern life. Scientists are employing interdisciplinary approaches to analyze both immediate effects and long-term societal trends, revealing complex patterns that require careful examination from multiple perspectives. These investigations are providing crucial insights into how technological innovation, cultural shifts, and policy decisions interact in ways that fundamentally influence human development and social structures.`,
                     suggestions: ['Can you elaborate on that?', 'What are the implications?', 'Tell me more']
                 };
             }

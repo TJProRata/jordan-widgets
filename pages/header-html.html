@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientists Create World's First Time Crystal Battery - The Pacific Science</title>
+    <title>Leopards may have feasted on our earliest ancestors - Popular Science</title>
     <style>
         * {
             margin: 0;
@@ -22,6 +22,7 @@
             background: white;
             border-bottom: 2px solid #333;
             padding: 12px 0;
+            overflow: visible;
         }
 
         .header-container {
@@ -30,7 +31,12 @@
             padding: 0 20px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 20px;
+            overflow: visible;
+        }
+
+        .header-right {
+            margin-left: 585px;
         }
 
         .logo {
@@ -39,10 +45,15 @@
             letter-spacing: -0.5px;
         }
 
-        /* Dropdown Navigation Styles */
         .nav-dropdown {
             position: relative;
             display: inline-block;
+        }
+
+        .header-container nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .nav-dropdown-button {
@@ -113,14 +124,143 @@
             color: white;
         }
 
-        .header-right {
-            margin-left: auto;
+        .search-chat-button {
+            width: 120px;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+            padding: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 3px 12px rgba(253, 181, 0, 0.3),
+                0 3px 15px rgba(219, 83, 105, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1002;
+            overflow: visible;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .search-chat-button.expanded {
+            width: 300px;
+            margin-left: -90px;
+            margin-right: -90px;
+            z-index: 1003;
+        }
+
+        .search-chat-button::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 21px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .search-chat-button * {
+            pointer-events: none !important;
+        }
+
+        .search-chat-button.expanded .search-input-field,
+        .search-chat-button.expanded .search-submit-button {
+            pointer-events: auto !important;
         }
 
         .search-icon {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
+            color: #666;
+            transition: opacity 0.2s ease;
+            flex-shrink: 0;
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .ask-text {
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            user-select: none;
             cursor: pointer;
+        }
+
+        .search-input-field {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            color: #666;
+            padding: 0 12px;
+            margin-left: 26px;
+            display: none;
+            transition: opacity 0.2s ease 0.1s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-input-field::placeholder {
+            color: #999;
+        }
+
+        .search-submit-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s ease 0.1s;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-submit-button svg {
+            width: 22px;
+            height: 22px;
+            color: #666;
+        }
+
+        /* Expanded state styles */
+        .search-chat-button.expanded .ask-text {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .search-chat-button.expanded .search-input-field {
+            display: block;
+            opacity: 1;
+            width: auto;
+            transition: opacity 0.2s ease 0.1s;
+        }
+
+        .search-chat-button.expanded .search-submit-button {
+            display: flex;
+            opacity: 1;
+            width: 22px;
+            margin-right: 12px;
+            transition: opacity 0.2s ease 0.1s;
         }
 
         /* Main Content Layout */
@@ -339,6 +479,11 @@
             border-radius: 41px;
             transition: all 0.3s ease;
             position: relative;
+            display: none;
+        }
+
+        .ask-widget.visible {
+            display: block;
         }
 
         .ask-widget-inner {
@@ -508,23 +653,31 @@
                     </button>
                     <div class="nav-dropdown-menu" id="navDropdownMenu">
                         <a href="search-up-top.html">Search up top</a>
-                        <a href="new-green.html" class="active">New green</a>
+                        <a href="new-green.html">New green</a>
                         <a href="side-rail.html">Side rail</a>
                         <a href="top-of-article-old.html">Top of article (old)</a>
                         <a href="middle-of-article.html">Middle of article</a>
                         <a href="bottom-of-article-embed.html">Bottom of article embed</a>
                         <a href="dynamic-cta.html">Dynamic cta</a>
                         <a href="update-askinbio.html">Update askinbio</a>
-                        <a href="header-html.html">Header HTML</a>
+                        <a href="header-html.html" class="active">Header HTML</a>
                     </div>
                 </div>
             </nav>
-            <div class="logo">THE PACIFIC SCIENCE</div>
+            <div class="logo">POPULAR SCIENCE</div>
             <div class="header-right">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
+                <button class="search-chat-button" id="headerSearchButton" type="button">
+                    <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ask-text">Ask</span>
+                    <input type="text" class="search-input-field" id="searchInputField" placeholder="Ask follow-up...">
+                    <button type="button" class="search-submit-button" id="searchSubmitButton">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 2L19 12L9 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </button>
             </div>
         </div>
     </header>
@@ -536,15 +689,15 @@
             <div class="breadcrumb">
                 <a href="#">SCIENCE</a>
                 <span>/</span>
-                <a href="#">PHYSICS</a>
+                <a href="#">BIOLOGY</a>
                 <span>/</span>
-                <span>QUANTUM</span>
+                <span>EVOLUTION</span>
             </div>
 
-            <h1 class="article-title">Scientists Create World's First Time Crystal Battery</h1>
-            <p class="article-subtitle">Breakthrough harnesses perpetual quantum motion for endless energy storage.</p>
+            <h1 class="article-title">Leopards may have feasted on our earliest ancestors</h1>
+            <p class="article-subtitle">It took a while for humans to climb the food chain.</p>
             <div class="article-meta">
-                DR. ALEX RIVERA / PUBLISHED SEP 24, 2025 11:30 AM EDT
+                ANDREW PAUL / PUBLISHED SEP 23, 2025 12:11 PM EDT
             </div>
 
             <div class="article-image">
@@ -679,17 +832,20 @@
         </aside>
     </div>
     <script>
-        // Navigation Dropdown Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Navigation Dropdown Functionality
             const navDropdown = document.getElementById('navDropdown');
             const navDropdownButton = document.getElementById('navDropdownButton');
 
             if (navDropdown && navDropdownButton) {
+                console.log('Dropdown elements found');
                 // Toggle dropdown on button click
                 navDropdownButton.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     navDropdown.classList.toggle('active');
+                    console.log('Dropdown clicked! Active class:', navDropdown.classList.contains('active'));
+                    console.log('All classes:', navDropdown.className);
                 });
 
                 // Close dropdown when clicking outside
@@ -706,10 +862,143 @@
                     }
                 });
             }
-        });
 
-        // Ask Widget Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+            // Header Expandable Search Functionality
+            const headerSearchButton = document.getElementById('headerSearchButton');
+            const searchInputField = document.getElementById('searchInputField');
+            const searchSubmitButton = document.getElementById('searchSubmitButton');
+
+            if (headerSearchButton && searchInputField && searchSubmitButton) {
+                let isExpanded = false;
+
+                // Add a click handler to the whole button
+                function handleButtonClick(e) {
+                    // Check if we clicked on an interactive element
+                    const clickedInput = e.target === searchInputField || searchInputField.contains(e.target);
+                    const clickedSubmit = e.target === searchSubmitButton || searchSubmitButton.contains(e.target);
+
+                    // If clicking input or submit when expanded, don't do anything
+                    if (isExpanded && (clickedInput || clickedSubmit)) {
+                        return;
+                    }
+
+                    // Only expand when not already expanded
+                    if (!isExpanded) {
+                        // Expand the search
+                        headerSearchButton.classList.add('expanded');
+                        isExpanded = true;
+
+                        // Focus the input field after animation
+                        setTimeout(() => {
+                            searchInputField.focus();
+                        }, 150);
+                    }
+                    // Remove the else clause that was collapsing on any click
+                }
+
+                // Attach the click handler
+                headerSearchButton.addEventListener('click', handleButtonClick);
+
+                // Handle input field clicks (prevent event bubbling)
+                searchInputField.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+
+                // Also prevent mousedown events from bubbling (for cursor positioning)
+                searchInputField.addEventListener('mousedown', function(e) {
+                    e.stopPropagation();
+                });
+
+                // Handle submit button clicks
+                searchSubmitButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    handleHeaderSearch();
+                });
+
+                // Collapse when input loses focus (if empty) - but not after a search
+                let justSearched = false;
+                searchInputField.addEventListener('blur', function(e) {
+                    // Don't collapse if we just performed a search
+                    if (justSearched) {
+                        justSearched = false;
+                        return;
+                    }
+
+                    setTimeout(() => {
+                        // Check if focus moved to submit button or back to input
+                        const activeElement = document.activeElement;
+                        const focusInWidget = headerSearchButton.contains(activeElement);
+
+                        // Only collapse if input is empty and focus has left the widget entirely
+                        if (searchInputField.value.trim() === '' && !focusInWidget) {
+                            collapseSearch();
+                        }
+                    }, 150);
+                });
+
+                // Function to collapse the search
+                function collapseSearch() {
+                    if (isExpanded) {
+                        headerSearchButton.classList.remove('expanded');
+                        isExpanded = false;
+                        searchInputField.value = '';
+                    }
+                }
+
+                // Function to handle search execution
+                function handleHeaderSearch() {
+                    const query = searchInputField.value.trim();
+                    if (query) {
+                        // Set flag to prevent collapse after search
+                        justSearched = true;
+
+                        // Show the sidebar widget
+                        const askWidget = document.getElementById('askWidget');
+                        if (askWidget) {
+                            askWidget.classList.add('visible');
+                        }
+
+                        // Focus the sidebar widget and populate it with the query
+                        const sidebarInput = document.getElementById('askInput');
+                        if (sidebarInput) {
+                            sidebarInput.value = query;
+                            // Trigger the sidebar search
+                            const askButton = document.getElementById('askButton');
+                            if (askButton) {
+                                askButton.click();
+                            }
+                        }
+
+                        // Keep the widget expanded and clear the input for a new search
+                        searchInputField.value = '';
+                        searchInputField.focus();
+                    }
+                }
+
+                // Handle keyboard events
+                searchInputField.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleHeaderSearch();
+                    } else if (e.key === 'Escape') {
+                        e.preventDefault();
+                        collapseSearch();
+                        headerSearchButton.focus();
+                    }
+                });
+
+                // Handle clicks outside to collapse
+                document.addEventListener('click', function(e) {
+                    if (!headerSearchButton.contains(e.target) && isExpanded) {
+                        // Don't collapse if input has content or is focused
+                        if (searchInputField.value.trim() === '' && document.activeElement !== searchInputField) {
+                            collapseSearch();
+                        }
+                    }
+                });
+            }
+
+            // Ask Widget Functionality
             const askWidget = document.getElementById('askWidget');
             const askInput = document.getElementById('askInput');
             const askButton = document.getElementById('askButton');
@@ -730,6 +1019,9 @@
             async function handleAsk() {
                 const query = askInput.value.trim();
                 if (!query) return;
+
+                // Make sure widget is visible
+                askWidget.classList.add('visible');
 
                 // Expand the widget and show response area
                 askWidget.classList.add('expanded');
