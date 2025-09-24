@@ -20,6 +20,7 @@
             margin-bottom: 30px;
             padding-bottom: 15px;
             border-bottom: 2px solid #e74c3c;
+            text-align: left;
         }
 
         .answer-container {
@@ -81,20 +82,22 @@
 
         .message {
             margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 15px 0;
         }
 
         .message.user {
-            background: #e74c3c;
-            color: white;
-            margin-left: 50px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 18px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e74c3c;
         }
 
         .message.assistant {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            margin-right: 50px;
+            color: #34495e;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
         .follow-up-input {
@@ -230,11 +233,6 @@
     </a>
 
     <div class="search-results-container">
-        <!-- Search Query Display -->
-        <div class="search-query" id="searchQuery">
-            Loading question...
-        </div>
-
         <!-- Conversation Container -->
         <div class="conversation-container" id="conversationContainer">
             <!-- Messages will be added here -->
@@ -350,8 +348,11 @@
                         // For simple text streaming (our server sends plain text)
                         answerDiv.textContent += chunk;
 
-                        // Auto-scroll to keep content visible
-                        answerDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                        // Keep bottom in view while streaming
+                        window.scrollTo({
+                            top: document.documentElement.scrollHeight,
+                            behavior: 'smooth'
+                        });
                     }
                 } catch (streamError) {
                     console.error('Streaming error:', streamError);
@@ -369,10 +370,20 @@
                 const streamingSpeed = 8; // ms between characters
 
                 return new Promise((resolve) => {
+                    let scrollCounter = 0;
                     const typeInterval = setInterval(() => {
                         if (currentIndex < response.text.length) {
                             answerDiv.textContent += response.text.charAt(currentIndex);
                             currentIndex++;
+                            scrollCounter++;
+
+                            // Keep bottom in view while streaming (every 5 characters for smoother performance)
+                            if (scrollCounter % 5 === 0) {
+                                window.scrollTo({
+                                    top: document.documentElement.scrollHeight,
+                                    behavior: 'auto'
+                                });
+                            }
                         } else {
                             clearInterval(typeInterval);
 
@@ -458,7 +469,6 @@ I'd be happy to explore any specific aspect of your question in more detail. Wha
 
 
             async initializeWithQuery(query) {
-                document.getElementById('searchQuery').textContent = query;
                 document.title = `"${query}" - AI Search Results - The Atlantic`;
 
                 // Add initial user message
@@ -483,7 +493,6 @@ I'd be happy to explore any specific aspect of your question in more detail. Wha
             if (query) {
                 chat.initializeWithQuery(query);
             } else {
-                document.getElementById('searchQuery').textContent = 'No search query provided';
                 document.getElementById('conversationContainer').innerHTML =
                     '<div class="error-message">Please enter a search query to get started.</div>';
             }

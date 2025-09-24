@@ -52,14 +52,6 @@ export default defineConfig(({ mode }) => {
         {
           src: 'pages/*.html',
           dest: 'pages'
-        },
-        {
-          src: 'widget/dist/*',
-          dest: 'widget/dist'
-        },
-        {
-          src: 'index.html',
-          dest: ''
         }
       ]
     })
