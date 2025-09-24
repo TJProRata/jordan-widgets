@@ -623,7 +623,7 @@
             const relatedSection = document.getElementById('relatedSection');
 
             // Determine server URL based on environment
-            // Always use port 3000 for API when in development
+            // Use localhost:3000 for development, Vercel API routes for production
             const serverUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
                 ? 'http://localhost:3000'
                 : window.location.origin;
