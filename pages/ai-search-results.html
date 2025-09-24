@@ -39,14 +39,6 @@
             white-space: pre-wrap;
         }
 
-        .streaming-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 20px;
-            background-color: #e74c3c;
-            animation: blink 1s infinite;
-            margin-left: 2px;
-        }
 
         .loading-indicator {
             display: flex;
@@ -82,67 +74,6 @@
             40% { transform: scale(1); }
         }
 
-        .sources-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ddd;
-        }
-
-        .sources-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .source-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: white;
-            border-radius: 8px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #e9ecef;
-        }
-
-        .source-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .source-icon {
-            width: 40px;
-            height: 40px;
-            background: #e74c3c;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .source-content {
-            flex: 1;
-        }
-
-        .source-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .source-description {
-            color: #6c757d;
-            font-size: 12px;
-            margin: 0;
-        }
 
         .conversation-container {
             margin-top: 30px;
@@ -259,6 +190,36 @@
     </style>
 </head>
 <body>
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <div class="nav-left">
+                    <ul class="nav-menu">
+                        <li><a href="search-up-top.html" class="nav-item">Search up top</a></li>
+                        <li><a href="new-green.html" class="nav-item">New green</a></li>
+                        <li><a href="side-rail.html" class="nav-item">Side rail</a></li>
+                        <li><a href="top-of-article-old.html" class="nav-item">Top of article (old)</a></li>
+                        <li><a href="middle-of-article.html" class="nav-item">Middle of article</a></li>
+                        <li><a href="bottom-of-article-embed.html" class="nav-item">Bottom of article embed</a></li>
+                        <li><a href="dynamic-cta.html" class="nav-item">Dynamic cta</a></li>
+                        <li><a href="update-askinbio.html" class="nav-item">Update askinbio</a></li>
+                    </ul>
+                </div>
+                <div class="nav-right">
+                    <a href="../index.html" class="logo-link">
+                        <div class="logo">
+                            <img src="../assets/images/theatlantic.png" alt="The Atlantic" class="logo-image">
+                        </div>
+                    </a>
+                    <span class="site-name">The Atlantic</span>
+                    <a href="#" class="sign-in">Sign In</a>
+                    <button class="subscribe-btn">Subscribe</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
     <!-- Back Button -->
     <a href="javascript:history.back()" class="back-button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -285,13 +246,6 @@
             <button id="sendButton">Send</button>
         </div>
 
-        <!-- Sources Section -->
-        <div class="sources-section" id="sourcesSection" style="display: none;">
-            <h3 class="sources-title">Sources & References</h3>
-            <div id="sourcesContainer">
-                <!-- Sources will be populated by JavaScript -->
-            </div>
-        </div>
     </div>
 
     <script>
@@ -303,7 +257,6 @@
                 this.conversationContainer = document.getElementById('conversationContainer');
                 this.followUpInput = document.getElementById('followUpInput');
                 this.sendButton = document.getElementById('sendButton');
-                this.sourcesContainer = document.getElementById('sourcesContainer');
 
                 this.initializeEventListeners();
             }
@@ -348,11 +301,8 @@
                 messageDiv.className = 'message assistant';
                 const answerDiv = document.createElement('div');
                 answerDiv.className = 'answer-text';
-                const cursor = document.createElement('span');
-                cursor.className = 'streaming-cursor';
 
                 messageDiv.appendChild(answerDiv);
-                messageDiv.appendChild(cursor);
                 this.conversationContainer.appendChild(messageDiv);
 
                 try {
@@ -360,22 +310,21 @@
                     const hasRealAPI = false; // Set to true when backend is available
 
                     if (hasRealAPI) {
-                        await this.streamFromAPI(answerDiv, cursor);
+                        await this.streamFromAPI(answerDiv);
                     } else {
-                        await this.simulateStreaming(answerDiv, cursor);
+                        await this.simulateStreaming(answerDiv);
                     }
                 } catch (error) {
                     console.error('Streaming error:', error);
                     answerDiv.innerHTML = '<div class="error-message">Sorry, I encountered an error. Please try again.</div>';
                 } finally {
-                    cursor.style.display = 'none';
                     this.isStreaming = false;
                     this.sendButton.disabled = false;
                     messageDiv.scrollIntoView({ behavior: 'smooth' });
                 }
             }
 
-            async streamFromAPI(answerDiv, cursor) {
+            async streamFromAPI(answerDiv) {
                 // Real API streaming implementation
                 const response = await fetch('http://localhost:3001/api/chat', {
                     method: 'POST',
@@ -401,8 +350,8 @@
                         // For simple text streaming (our server sends plain text)
                         answerDiv.textContent += chunk;
 
-                        // Auto-scroll to keep the cursor visible
-                        cursor.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                        // Auto-scroll to keep content visible
+                        answerDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
                     }
                 } catch (streamError) {
                     console.error('Streaming error:', streamError);
@@ -410,14 +359,14 @@
                 }
             }
 
-            async simulateStreaming(answerDiv, cursor) {
+            async simulateStreaming(answerDiv) {
                 // Get enhanced response from our Context7-integrated system
                 const latestMessage = this.messages[this.messages.length - 1];
                 const response = await this.getEnhancedResponse(latestMessage.content);
 
                 // Simulate streaming with typewriter effect
                 let currentIndex = 0;
-                const streamingSpeed = 30; // ms between characters
+                const streamingSpeed = 8; // ms between characters
 
                 return new Promise((resolve) => {
                     const typeInterval = setInterval(() => {
@@ -432,10 +381,6 @@
                                 this.addSuggestionChips(answerDiv, response.suggestions);
                             }
 
-                            // Update sources
-                            if (response.sources) {
-                                this.updateSources(response.sources);
-                            }
 
                             resolve();
                         }
@@ -452,12 +397,7 @@
 The current landscape is marked by rapid innovation in multimodal AI systems that can process text, images, and audio simultaneously. Industry reports indicate companies are racing to develop more efficient models that require less computational power while maintaining high performance.
 
 However, this progress comes with important considerations around bias, safety, and societal impact. Experts emphasize the need for responsible AI development that prioritizes human welfare and addresses potential risks through comprehensive testing and ethical guidelines.`,
-                        suggestions: ['What are the latest AI breakthroughs?', 'How does AI bias work?', 'Tell me about AI safety'],
-                        sources: [
-                            { title: 'AI Research Papers Database', description: 'Latest developments in machine learning', type: 'research' },
-                            { title: 'Context7 AI Documentation', description: 'Comprehensive AI development guides', type: 'documentation' },
-                            { title: 'AI Ethics Guidelines', description: 'Responsible AI development frameworks', type: 'article' }
-                        ]
+                        suggestions: ['What are the latest AI breakthroughs?', 'How does AI bias work?', 'Tell me about AI safety']
                     },
                     'chatbot': {
                         text: `From digital psychology research and AI documentation: Chatbots have evolved into sophisticated conversational agents using advanced natural language processing. The psychology behind chatbot engagement reveals that companies employ behavioral science techniques to maintain user interest.
@@ -465,12 +405,7 @@ However, this progress comes with important considerations around bias, safety, 
 Modern chatbots use variable reward schedules, social validation, and personalization to create engaging experiences. Research shows this represents a shift from utility-focused tools to engagement-optimized systems designed to maximize user retention.
 
 However, this evolution raises important questions about digital wellness and AI dependency. As chatbots become more sophisticated at mimicking human conversation patterns, users may develop parasocial relationships with AI systems that could replace human connections.`,
-                        suggestions: ['How do chatbots manipulate users?', 'What are the risks of AI dependency?', 'How can I protect myself?'],
-                        sources: [
-                            { title: 'Digital Psychology Research', description: 'Stanford studies on AI engagement tactics', type: 'research' },
-                            { title: 'Conversational AI Documentation', description: 'Best practices for chatbot design', type: 'documentation' },
-                            { title: 'AI Ethics in Chat Systems', description: 'Responsible conversation design', type: 'article' }
-                        ]
+                        suggestions: ['How do chatbots manipulate users?', 'What are the risks of AI dependency?', 'How can I protect myself?']
                     },
                     'technology': {
                         text: `From technology industry analysis and documentation: The current tech landscape is experiencing unprecedented transformation driven by AI, cloud computing, and emerging technologies. Industry reports show accelerated digital adoption across all sectors.
@@ -478,12 +413,7 @@ However, this evolution raises important questions about digital wellness and AI
 Key trends include edge computing bringing processing closer to data sources, quantum research promising computational breakthroughs, and the democratization of AI tools making advanced technology accessible to smaller organizations.
 
 Privacy and security remain paramount as our digital footprint expands. New regulations like GDPR and emerging technologies are creating frameworks to protect user data while maintaining innovation momentum. The balance between technological advancement and human welfare continues to shape industry development.`,
-                        suggestions: ['What are emerging tech trends?', 'How does quantum computing work?', 'Tell me about tech privacy'],
-                        sources: [
-                            { title: 'Tech Industry Reports', description: 'Comprehensive technology trend analysis', type: 'research' },
-                            { title: 'Context7 Tech Documentation', description: 'Latest technology specifications', type: 'documentation' },
-                            { title: 'Technology Policy Research', description: 'Tech governance and regulation', type: 'article' }
-                        ]
+                        suggestions: ['What are emerging tech trends?', 'How does quantum computing work?', 'Tell me about tech privacy']
                     }
                 };
 
@@ -504,11 +434,7 @@ Privacy and security remain paramount as our digital footprint expands. New regu
 From our enhanced knowledge base: Contemporary issues require nuanced analysis that considers multiple perspectives and long-term implications. Whether examining technological innovation, cultural shifts, or policy decisions, it's crucial to understand both immediate effects and broader societal trends.
 
 I'd be happy to explore any specific aspect of your question in more detail. What particular angle interests you most?`,
-                    suggestions: ['Can you elaborate on that?', 'What are the implications?', 'Tell me more'],
-                    sources: [
-                        { title: 'The Atlantic Archives', description: 'Comprehensive journalism and analysis', type: 'article' },
-                        { title: 'Expert Commentary Database', description: 'Insights from leading authorities', type: 'research' }
-                    ]
+                    suggestions: ['Can you elaborate on that?', 'What are the implications?', 'Tell me more']
                 };
             }
 
@@ -530,36 +456,6 @@ I'd be happy to explore any specific aspect of your question in more detail. Wha
                 container.appendChild(chipsContainer);
             }
 
-            updateSources(sources) {
-                if (!sources || sources.length === 0) return;
-
-                document.getElementById('sourcesSection').style.display = 'block';
-                this.sourcesContainer.innerHTML = '';
-
-                sources.forEach(source => {
-                    const sourceItem = document.createElement('a');
-                    sourceItem.className = 'source-item';
-                    sourceItem.href = '#';
-
-                    const iconMap = {
-                        'research': '📊',
-                        'documentation': '📚',
-                        'article': '📰',
-                        'example': '💡'
-                    };
-
-                    sourceItem.innerHTML = `
-                        <div class="source-icon">
-                            <span style="font-size: 20px;">${iconMap[source.type] || '📄'}</span>
-                        </div>
-                        <div class="source-content">
-                            <div class="source-title">${source.title}</div>
-                            <p class="source-description">${source.description}</p>
-                        </div>
-                    `;
-                    this.sourcesContainer.appendChild(sourceItem);
-                });
-            }
 
             async initializeWithQuery(query) {
                 document.getElementById('searchQuery').textContent = query;

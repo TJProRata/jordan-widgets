@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -12,7 +13,15 @@ export default defineConfig(({ mode }) => {
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'pages/search-up-top.html'),
-        'update-askinbio': resolve(__dirname, 'pages/update-askinbio.html')
+        'new-green': resolve(__dirname, 'pages/new-green.html'),
+        'side-rail': resolve(__dirname, 'pages/side-rail.html'),
+        'top-of-article-old': resolve(__dirname, 'pages/top-of-article-old.html'),
+        'middle-of-article': resolve(__dirname, 'pages/middle-of-article.html'),
+        'bottom-of-article-embed': resolve(__dirname, 'pages/bottom-of-article-embed.html'),
+        'dynamic-cta': resolve(__dirname, 'pages/dynamic-cta.html'),
+        'update-askinbio': resolve(__dirname, 'pages/update-askinbio.html'),
+        'search-results': resolve(__dirname, 'pages/search-results.html'),
+        'ai-search-results': resolve(__dirname, 'pages/ai-search-results.html')
       }
     }
   },
@@ -32,6 +41,28 @@ export default defineConfig(({ mode }) => {
     alias: {
       '@': resolve(__dirname, '.')
     }
-  }
+  },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'assets/**/*',
+          dest: 'assets'
+        },
+        {
+          src: 'pages/*.html',
+          dest: 'pages'
+        },
+        {
+          src: 'widget/dist/*',
+          dest: 'widget/dist'
+        },
+        {
+          src: 'index.html',
+          dest: ''
+        }
+      ]
+    })
+  ]
   };
 });

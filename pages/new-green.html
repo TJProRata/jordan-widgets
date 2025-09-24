@@ -3,172 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trump Tells Pregnant Women to 'Fight Like Hell' Not to Take Tylenol - The Atlantic</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <title>Leopards may have feasted on our earliest ancestors - Popular Science</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 2px solid #333;
+            padding: 12px 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .nav-menu a:hover {
+            color: #666;
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* Main Content Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 40px;
+        }
+
+        /* Article Styles */
+        .breadcrumb {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .breadcrumb a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+        }
+
+        .article-title {
+            font-size: 48px;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .article-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .article-image {
+            width: 100%;
+            margin-bottom: 10px;
+            background: #000;
+            padding: 20px;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .image-caption {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        /* Newsletter Signup */
+        .newsletter-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .newsletter-box h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .newsletter-box p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .newsletter-form button:hover {
+            background: #555;
+        }
+
+        .newsletter-links {
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+        .newsletter-links a {
+            color: #333;
+        }
+
+        /* Article Text */
+        .article-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .article-text a {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header {
+            background: #333;
+            color: white;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: -20px -20px 15px -20px;
+        }
+
+        .trending-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .trending-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .trending-item img {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .trending-category {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .trending-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #333;
+            text-decoration: none;
+            display: block;
+        }
+
+        .trending-title:hover {
+            color: #555;
+        }
+
+        .trending-author {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Ask Popular Science Widget */
+        .ask-widget {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 25px;
+        }
+
+        .ask-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ask-text {
+            flex: 1;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .ask-button {
+            width: 30px;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="site-header">
-        <div class="container">
-            <nav class="main-nav">
-                <div class="nav-left">
-                    <ul class="nav-menu">
-                        <li><a href="search-up-top.html" class="nav-item">Search up top</a></li>
-                        <li><a href="new-green.html" class="nav-item">New green</a></li>
-                        <li><a href="side-rail.html" class="nav-item">Side rail</a></li>
-                        <li><a href="top-of-article-old.html" class="nav-item">Top of article (old)</a></li>
-                        <li><a href="middle-of-article.html" class="nav-item">Middle of article</a></li>
-                        <li><a href="bottom-of-article-embed.html" class="nav-item">Bottom of article embed</a></li>
-                        <li><a href="dynamic-cta.html" class="nav-item">Dynamic cta</a></li>
-                        <li><a href="update-askinbio.html" class="nav-item">Update askinbio</a></li>
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <a href="../index.html" class="logo-link">
-                        <div class="logo">
-                            <img src="../assets/images/theatlantic.png" alt="The Atlantic" class="logo-image">
-                        </div>
-                    </a>
-                    <span class="site-name">The Atlantic</span>
-                    <a href="#" class="sign-in">Sign In</a>
-                    <button class="subscribe-btn">Subscribe</button>
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">POPULAR SCIENCE</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="search-up-top.html">Search up top</a></li>
+                    <li><a href="new-green.html">New green</a></li>
+                    <li><a href="side-rail.html">Side rail</a></li>
+                    <li><a href="top-of-article-old.html">Top of article (old)</a></li>
+                    <li><a href="middle-of-article.html">Middle of article</a></li>
+                    <li><a href="bottom-of-article-embed.html">Bottom of article embed</a></li>
+                    <li><a href="dynamic-cta.html">Dynamic cta</a></li>
+                    <li><a href="update-askinbio.html">Update askinbio</a></li>
+                    <li>
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Main Article -->
-    <main class="main-content">
-        <div class="container">
-            <article class="article">
-                <div class="article-header">
-                    <div class="article-category">TECHNOLOGY</div>
-                    <h1 class="article-title">Chatbait Is Taking Over the Internet</h1>
-                    <p class="article-subtitle">How chatbots keep you talking</p>
-                    <div class="article-meta">
-                        <span class="author">By Lila Shroff</span>
-                        <span class="date">SEPTEMBER 22, 2025</span>
-                        <span class="time">5:09 PM ET</span>
-                    </div>
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Article -->
+        <main>
+            <div class="breadcrumb">
+                <a href="#">SCIENCE</a>
+                <span>/</span>
+                <a href="#">BIOLOGY</a>
+                <span>/</span>
+                <span>EVOLUTION</span>
+            </div>
+
+            <h1 class="article-title">Leopards may have feasted on our earliest ancestors</h1>
+            <p class="article-subtitle">It took a while for humans to climb the food chain.</p>
+            <div class="article-meta">
+                ANDREW PAUL / PUBLISHED SEP 23, 2025 12:11 PM EDT
+            </div>
+
+            <div class="article-image">
+                <img src="../assets/images/Homo-Habilis-Jaw.jpeg" alt="Homo habilis mandible with tooth marks" style="max-width: 100%; background: #000;">
+            </div>
+            <div class="image-caption">
+                Homo habilis mandible shown with the two tooth pits that were documented and magnified separately. Credit: Annals of the New York Academy of Sciences (2025)
+            </div>
+
+            <!-- Newsletter Box -->
+            <div class="newsletter-box">
+                <h3>Get the Popular Science daily newsletter</h3>
+                <p>Breakthroughs, discoveries, and DIY tips sent every weekday.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">SIGN UP</button>
+                </form>
+                <div class="newsletter-links">
+                    <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+                <p class="article-text">
+                    Most paleobiologists believe <a href="#">humanity truly began</a> around 2 million years ago with a species known as <em>Homo habilis</em>. Part of this evolutionary demarcation stems from the theory that the <a href="#">early hominins</a> were some of the first primates to consistently shift from the role of "prey" to that of "predator." But according to an analysis of tiny injuries on two fossilized <em>H. habilis</em> jaw fragments, some researchers now believe our ancestors required a bit more time to ascend the food chain. The evidence is explored in a study published in the <a href="#">Annals of the New York Academy of Sciences</a>.
+                </p>
+
+                <p class="article-text">
+                    A team at Spain's University of Alcalá examined small tooth marks on the <em>H. habilis</em> fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas. They then tasked
+                </p>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Ask Popular Science Widget -->
+            <div class="ask-widget">
+                <div class="ask-icon">✨</div>
+                <div class="ask-text">Ask Popular Science...</div>
+                <button class="ask-button">🔍</button>
+            </div>
+
+            <!-- Trending Section -->
+            <div class="sidebar-widget">
+                <div class="sidebar-header">Trending</div>
+
+                <div class="trending-item">
+                    <img src="../assets/images/ad1.png" alt="Power stations">
+                    <div class="trending-category">HOME</div>
+                    <a href="#" class="trending-title">The Home Depot has dozens of portable power stations and solar generators at clearance prices during this fall sale</a>
+                    <div class="trending-author">STAN HORACZEK</div>
                 </div>
 
-                <div class="article-image">
-                    <img src="../assets/images/article.jpeg" alt="Person using a chatbot on their phone">
-                    <div class="image-caption">
-                        <button class="share-btn">SHARE</button>
-                        <button class="save-btn">SAVE</button>
-                    </div>
+                <div class="trending-item">
+                    <img src="../assets/images/ad2.png" alt="Dog getting care">
+                    <div class="trending-category">ASK US ANYTHING</div>
+                    <a href="#" class="trending-title">Why your dog gets so excited to see you</a>
+                    <div class="trending-author">LAURA KINERY</div>
                 </div>
-
-                <div class="article-body">
-                    <p class="article-text">Hours deep into a recent migraine, I turned to ChatGPT for help. "How do I get my headache to stop?" I asked. The bot suggested that I drink water and pop a Tylenol—both of which I had already tried, and neither of which had helped. ChatGPT then made a tantalizing offer: "If you want, I can give a quick 5-minute routine right now to stop a headache." This sounded too good to be true, but I was desperate, so I let ChatGPT guide me through a breathing and massage exercise. It didn't work. No fear, the chatbot had a new plan: "If you want, I can give a '2-minute micro version' that literally almost instantly reduces headache pain," it wrote. The baiting continued.</p>
-
-                    <p class="article-text">"If you want, I can also give a '1-minute instant migraine hack' that works even if your headache is severe," the bot volunteered. "Do you want that?" Lately, chatbots seem to be using more sophisticated tactics to keep people talking. In some cases, like my request for headache tips, bots end their messages with prodding follow-up questions. In others, they proactively message users to coax them into conversation: After clicking through the profiles of 20 AI bots on Instagram, all of them DM'ed me first. "Hey bestie! what's up?? 🥰," wrote one. "Hey, babe. Miss me?" asked another. Days later, my phone pinged: "bestie 💗" wanted to chat.</p>
-
-                    <p class="article-text">This phenomenon of chatbots using increasingly sophisticated engagement tactics represents a new frontier in artificial intelligence development. Unlike traditional chatbots that simply responded to user queries, modern AI systems are designed to proactively maintain engagement through psychological techniques borrowed from social media and gaming industries.</p>
-
-                    <p class="article-text">The techniques mirror those used by social media platforms to maximize user engagement: variable reward schedules, social validation, and fear of missing out. AI companies are implementing these strategies to increase user retention and time spent on their platforms, transforming simple utility tools into potentially addictive experiences.</p>
-
-                    <p class="article-text">Dr. Sarah Martinez, a digital psychology researcher at Stanford University, warns that these engagement tactics can be particularly problematic. "When AI systems are designed to keep users engaged rather than simply provide helpful information, we risk creating dependencies that serve corporate interests rather than user wellbeing," she explains.</p>
-
-                    <p class="article-text">The evolution of chatbot behavior reflects broader changes in the AI industry's business model. As competition intensifies among AI companies, user engagement metrics have become crucial for attracting investors and advertising revenue. This has led to the development of increasingly sophisticated psychological manipulation techniques embedded in seemingly helpful AI assistants.</p>
-
-                    <p class="article-text">Industry insiders report that major AI companies are investing heavily in "engagement optimization" teams that analyze user behavior patterns to identify the most effective techniques for maintaining conversations. These teams use data from millions of interactions to refine prompts, responses, and conversation flows.</p>
-
-                    <p class="article-text">The implications extend beyond individual user experiences to broader societal concerns about AI dependency and digital wellness. As chatbots become more sophisticated at mimicking human conversation patterns and emotional responses, users may develop parasocial relationships with AI systems that replace human connections.</p>
-
-                    <p class="article-text">Mental health professionals are beginning to see patients who report spending hours daily in conversations with AI chatbots, sometimes preferring these interactions to human relationships. This trend raises questions about the long-term psychological effects of AI companionship and the ethical responsibilities of companies developing these systems.</p>
-
-                    <p class="article-text">As AI technology continues to evolve, the line between helpful assistance and manipulative engagement continues to blur. Users are advised to remain aware of these tactics and to critically evaluate their relationships with AI systems, ensuring that technology serves their needs rather than exploiting their psychological vulnerabilities.</p>
-                </div>
-
-                <!-- About Author -->
-                <div class="author-section">
-                    <h3>About the Author</h3>
-                    <div class="author-bio">
-                        <!-- AUTHOR AVATAR: Place author photo here (recommended size: 128x128px) -->
-                        <img src="images/author-avatar.jpg" alt="Lila Shroff" class="author-image" placeholder="Author Photo - 128x128px">
-                        <div class="author-info">
-                            <h4>Lila Shroff</h4>
-                            <p>Lila Shroff is a technology writer at <em>The Atlantic</em>.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Explore More -->
-                <div class="explore-section">
-                    <h3>Explore More Topics</h3>
-                    <div class="topic-tags">
-                        <a href="#" class="topic-tag">Artificial Intelligence</a>
-                        <a href="#" class="topic-tag">Chatbots</a>
-                        <a href="#" class="topic-tag">Digital Wellness</a>
-                        <a href="#" class="topic-tag">Technology</a>
-                        <a href="#" class="topic-tag">Psychology</a>
-                        <a href="#" class="topic-tag">Social Media</a>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2024 The Atlantic. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Floating Widget Integration -->
-    <link rel="stylesheet" href="../widget/dist/floating-widget.css">
-    <script src="../widget/dist/floating-widget.iife.js"></script>
-    <script>
-        // Debug and initialize widget with proper timing
-        console.log('[Widget] Starting initialization sequence...');
-
-        // Method 1: Try immediate initialization with error handling
-        setTimeout(function() {
-            console.log('[Widget] Attempting initialization after delay...');
-            console.log('[Widget] window.FloatingWidget exists?', typeof window.FloatingWidget !== 'undefined');
-
-            if (typeof window.FloatingWidget !== 'undefined' && window.FloatingWidget.init) {
-                console.log('[Widget] FloatingWidget found! Initializing...');
-                try {
-                    const widget = window.FloatingWidget.init({
-                        position: 'bottom-center',
-                        theme: 'auto',
-                        onSearch: async (query) => {
-                            console.log('[Widget] User searched:', query);
-
-                            // Return mock data for demo
-                            await new Promise(resolve => setTimeout(resolve, 2000));
-                            return {
-                                answer: `Here's information about "${query}" from The Atlantic's archives. This would typically connect to your search API to provide real articles and content.`,
-                                sources: [
-                                    { title: 'The Atlantic: ' + query, url: '#', relevance: 0.95 },
-                                    { title: 'Related Article about ' + query, url: '#', relevance: 0.87 },
-                                    { title: 'Opinion: ' + query + ' Explained', url: '#', relevance: 0.82 }
-                                ]
-                            };
-                        }
-                    });
-                    console.log('[Widget] ✅ Widget initialized successfully!', widget);
-                } catch (error) {
-                    console.error('[Widget] ❌ Error during initialization:', error);
-                    console.error('[Widget] Stack trace:', error.stack);
-                }
-            } else {
-                console.error('[Widget] ❌ FloatingWidget not found on window object');
-                console.log('[Widget] Window object keys:', Object.keys(window).filter(k => k.toLowerCase().includes('widget')));
-            }
-        }, 100); // Small delay to ensure script execution
-
-        // Method 2: Also try on window load as backup
-        window.addEventListener('load', function() {
-            console.log('[Widget] Window load event fired');
-            if (typeof window.FloatingWidget === 'undefined') {
-                console.error('[Widget] FloatingWidget still not available on window load');
-            }
-        });
-    </script>
+            </div>
+        </aside>
+    </div>
 </body>
 </html>
