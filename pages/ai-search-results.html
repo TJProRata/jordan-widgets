@@ -305,7 +305,7 @@
 
                 try {
                     // Check if we have a real AI API endpoint
-                    const hasRealAPI = false; // Set to true when backend is available
+                    const hasRealAPI = true; // OpenAI API is now configured
 
                     if (hasRealAPI) {
                         await this.streamFromAPI(answerDiv);
@@ -323,8 +323,8 @@
             }
 
             async streamFromAPI(answerDiv) {
-                // Real API streaming implementation
-                const response = await fetch('http://localhost:3001/api/chat', {
+                // Real API streaming implementation with OpenAI
+                const response = await fetch('http://localhost:3000/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ messages: this.messages })

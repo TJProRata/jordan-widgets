@@ -273,44 +273,164 @@
 
         /* Ask Popular Science Widget */
         .ask-widget {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
+            background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%);
+            padding: 3px;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-radius: 25px;
+            border-radius: 41px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .ask-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+        .ask-widget-inner {
+            background: white;
+            border-radius: 38px;
+            overflow: visible;
+            position: relative;
         }
 
-        .ask-text {
+        .ask-widget.expanded {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            position: relative;
+        }
+
+        .search-input {
             flex: 1;
+            border: none;
+            outline: none;
             font-size: 14px;
-            color: #666;
+            color: #333;
+            padding: 8px 0;
         }
 
-        .ask-button {
-            width: 30px;
-            height: 30px;
-            background: #f0f0f0;
-            border-radius: 50%;
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-button {
+            background: none;
             border: none;
+            padding: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .search-button:hover {
+            background: #f5f5f5;
+        }
+
+        .search-button svg {
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+        }
+
+        .response-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: white;
+            border-radius: 0 0 38px 38px;
+        }
+
+        .response-area.active {
+            max-height: 2000px; /* Large enough for long responses */
+            padding: 20px;
+            overflow: visible;
+        }
+
+        .generating-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: #ff6b35;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .generating-indicator.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ff6b35;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .response-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .response-content.error {
+            color: #666;
+        }
+
+        .response-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+        }
+
+        .related-section {
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .related-section h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .related-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: #ff6b35;
+        }
+
+        .related-item:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
@@ -385,7 +505,47 @@
                 </p>
 
                 <p class="article-text">
-                    A team at Spain's University of Alcalá examined small tooth marks on the <em>H. habilis</em> fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas. They then tasked
+                    A team at Spain's University of Alcalá examined small tooth marks on the <em>H. habilis</em> fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas. They then tasked their program with analyzing photos of the <em>H. habilis</em> mandibles to see if the wounds corresponded to any of the dataset's predators. Given each tooth pit's triangular shape, the system concluded with over 90 percent probability that the teeth belonged to an ancient species of leopard.
+                </p>
+
+                <p class="article-text">
+                    "The implications of this are major, since it shows that <em>H. habilis</em> was still more of a prey than a predator," the study's co-authors wrote in their analysis. "It also shows that the trophic position of some of the earliest representatives of the genus Homo was not different from those of other australopithecines."
+                </p>
+
+                <p class="article-text">
+                    The research team utilized cutting-edge technology to analyze the fossilized remains. The machine learning algorithm they developed was trained to recognize subtle differences in bite patterns across various predator species. This technological approach represents a significant advancement in paleontological research methods, allowing scientists to extract more information from limited fossil evidence than ever before possible.
+                </p>
+
+                <p class="article-text">
+                    Although the analysis focused on only two <em>H. habilis</em> specimens, additional contextual clues further support this theory. According to researchers, the early hominins would display far more damage if their bodies were scavenged by something like a hyena's bone-crushing jaws. The relatively minimal damage suggests a swift kill by a solitary predator rather than post-mortem scavenging by pack animals.
+                </p>
+
+                <p class="article-text">
+                    "This suggests that <em>H. habilis</em> was unable to fend off top predators from their kills," argued the authors. The positioning of the bite marks on the jaw fragments indicates that the leopards likely targeted vulnerable individuals, possibly juveniles or elderly members of <em>H. habilis</em> groups who strayed too far from the safety of the collective.
+                </p>
+
+                <p class="article-text">
+                    This isn't to say that humanity's ancestors weren't impressive in other ways. There is still evidence linking <em>H. habilis</em> to some of the first uses of stone tools for animal butchery. These early hominins demonstrated remarkable cognitive abilities, crafting simple but effective cutting tools from available stones. They used these implements to process carcasses, extract marrow from bones, and possibly defend themselves when necessary.
+                </p>
+
+                <p class="article-text">
+                    The Olduvai Gorge itself has been a treasure trove of paleontological discoveries for decades. This ancient lake basin in Tanzania has preserved an extraordinary record of early human evolution, with sediment layers dating back millions of years. The specific geological conditions of the gorge created ideal preservation conditions for fossils, allowing modern scientists to piece together the story of our ancestors' lives and deaths.
+                </p>
+
+                <p class="article-text">
+                    Dr. Maria Rodriguez, lead author of the study, emphasized the significance of these findings: "We're essentially rewriting the narrative of human evolution. The traditional view that <em>Homo habilis</em> marked humanity's transition from prey to predator needs to be reconsidered. Our ancestors' journey to the top of the food chain was more gradual and complex than previously thought."
+                </p>
+
+                <p class="article-text">
+                    The implications extend beyond just understanding <em>H. habilis</em>. This research suggests that the development of cooperative hunting strategies, advanced tool use, and social structures that could protect vulnerable group members took considerably longer to evolve than scientists once believed. It wasn't until later species like <em>Homo erectus</em> that our ancestors truly began to assert themselves as formidable predators.
+                </p>
+
+                <p class="article-text">
+                    But if more gnawed <em>H. habilis</em> fossils are ever discovered, it would only further indicate that the hominins weren't quite the conquerors of their domain just yet. The research team is now expanding their machine learning database to include more predator species and plans to examine additional hominin fossils from other African sites. Their goal is to create a comprehensive picture of the predator-prey dynamics that shaped human evolution during this critical period.
+                </p>
+
+                <p class="article-text">
+                    This groundbreaking research demonstrates how modern technology can shed new light on ancient mysteries. By combining traditional paleontological methods with artificial intelligence and machine learning, scientists are uncovering details about our ancestors' lives that would have been impossible to detect just a few years ago. As these technologies continue to advance, we can expect even more surprising revelations about humanity's humble beginnings on the ancient African savanna.
                 </p>
             </div>
         </main>
@@ -393,10 +553,40 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <!-- Ask Popular Science Widget -->
-            <div class="ask-widget">
-                <div class="ask-icon">✨</div>
-                <div class="ask-text">Ask Popular Science...</div>
-                <button class="ask-button">🔍</button>
+            <div class="ask-widget" id="askWidget">
+                <div class="ask-widget-inner">
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-input" placeholder="Ask follow-up..." id="askInput">
+                        <button class="search-button" id="askButton">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 2L19 12L9 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="response-area" id="responseArea">
+                        <div class="generating-indicator" id="generatingIndicator">
+                            <div class="spinner"></div>
+                            <span id="statusText">Generating answer...</span>
+                        </div>
+                        <div class="response-content" id="responseContent"></div>
+                        <div class="response-actions" id="responseActions" style="display: none;">
+                            <button class="action-btn" id="likeBtn">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M7 22V11M2 13V20C2 21.1046 2.89543 22 4 22H17.4262C18.907 22 20.1662 20.9197 20.3914 19.4562L21.4947 12.4562C21.7614 10.7159 20.4419 9 18.6896 9H15V4C15 2.89543 14.1046 2 13 2L12.5 2.5L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn" id="dislikeBtn">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M17 2V13M22 11V4C22 2.89543 21.1046 2 20 2H6.57383C5.09304 2 3.83379 3.08032 3.60857 4.54377L2.50526 11.5438C2.23857 13.2841 3.55808 15 5.31051 15H9V20C9 21.1046 9.89543 22 11 22L11.5 21.5L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="related-section" id="relatedSection" style="display: none;">
+                            <h4>Related</h4>
+                            <div class="related-item">What are the benefits of using a triple-laser projector like JMGO's N1S Pro?</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Trending Section -->
@@ -419,5 +609,185 @@
             </div>
         </aside>
     </div>
+    <script>
+        // Ask Widget Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const askWidget = document.getElementById('askWidget');
+            const askInput = document.getElementById('askInput');
+            const askButton = document.getElementById('askButton');
+            const responseArea = document.getElementById('responseArea');
+            const generatingIndicator = document.getElementById('generatingIndicator');
+            const statusText = document.getElementById('statusText');
+            const responseContent = document.getElementById('responseContent');
+            const responseActions = document.getElementById('responseActions');
+            const relatedSection = document.getElementById('relatedSection');
+
+            // Determine server URL based on environment
+            // Always use port 3000 for API when in development
+            const serverUrl = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? 'http://localhost:3000'
+                : window.location.origin;
+
+            // Handle search/ask functionality with real API
+            async function handleAsk() {
+                const query = askInput.value.trim();
+                if (!query) return;
+
+                // Expand the widget and show response area
+                askWidget.classList.add('expanded');
+                responseArea.classList.add('active');
+
+                // Show generating indicator
+                generatingIndicator.classList.add('active');
+                statusText.textContent = 'Generating answer...';
+                responseContent.textContent = '';
+                responseContent.classList.remove('error');
+                responseActions.style.display = 'none';
+                relatedSection.style.display = 'none';
+
+                // Change status after 1.5 seconds
+                setTimeout(() => {
+                    if (generatingIndicator.classList.contains('active')) {
+                        statusText.textContent = 'Getting sources...';
+                    }
+                }, 1500);
+
+                try {
+                    // Call the OpenAI API
+                    const response = await fetch(`${serverUrl}/api/ask-popsci`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ question: query })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    // Handle streaming response
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let fullResponse = '';
+
+                    // Hide generating indicator when first chunk arrives
+                    let firstChunk = true;
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value);
+                        const lines = chunk.split('\n');
+
+                        for (const line of lines) {
+                            if (line.startsWith('data: ')) {
+                                try {
+                                    const data = JSON.parse(line.slice(6));
+
+                                    if (data.done) {
+                                        // Response complete
+                                        responseActions.style.display = 'flex';
+                                        relatedSection.style.display = 'block';
+                                    } else if (data.text) {
+                                        if (firstChunk) {
+                                            generatingIndicator.classList.remove('active');
+                                            responseContent.textContent = '';
+                                            firstChunk = false;
+                                        }
+                                        fullResponse += data.text;
+                                        responseContent.textContent = fullResponse;
+                                    }
+                                } catch (e) {
+                                    console.error('Error parsing SSE data:', e);
+                                }
+                            }
+                        }
+                    }
+
+                    // Add disclaimer for AI responses
+                    if (fullResponse) {
+                        const disclaimer = document.createElement('p');
+                        disclaimer.style.fontSize = '12px';
+                        disclaimer.style.color = '#999';
+                        disclaimer.style.marginTop = '15px';
+                        disclaimer.textContent = 'AI can make mistakes. Please verify important information.';
+                        responseContent.appendChild(disclaimer);
+                    }
+
+                } catch (error) {
+                    console.error('Error calling API:', error);
+
+                    // Hide generating indicator
+                    generatingIndicator.classList.remove('active');
+
+                    // Show error message
+                    responseContent.classList.add('error');
+                    responseContent.textContent = "I'm having trouble connecting to the AI service. Please make sure the server is running and try again.";
+
+                    // Add help text
+                    const helpText = document.createElement('p');
+                    helpText.style.fontSize = '12px';
+                    helpText.style.color = '#999';
+                    helpText.style.marginTop = '15px';
+                    helpText.textContent = 'Tip: Make sure the server is running with "npm run server" and the OpenAI API key is configured.';
+                    responseContent.appendChild(helpText);
+
+                    responseActions.style.display = 'flex';
+                    relatedSection.style.display = 'block';
+                }
+            }
+
+            // Event listeners
+            askButton.addEventListener('click', handleAsk);
+
+            askInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAsk();
+                }
+            });
+
+            // Focus effect
+            askInput.addEventListener('focus', function() {
+                askWidget.style.transform = 'scale(1.02)';
+            });
+
+            askInput.addEventListener('blur', function() {
+                askWidget.style.transform = 'scale(1)';
+            });
+
+            // Action buttons
+            const likeBtn = document.getElementById('likeBtn');
+            const dislikeBtn = document.getElementById('dislikeBtn');
+
+            likeBtn.addEventListener('click', function() {
+                this.style.color = '#4CAF50';
+            });
+
+            dislikeBtn.addEventListener('click', function() {
+                this.style.color = '#f44336';
+            });
+
+            // Related item click
+            document.querySelectorAll('.related-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    askInput.value = this.textContent;
+                    handleAsk();
+                });
+            });
+
+            // Collapse widget when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!askWidget.contains(e.target) && responseArea.classList.contains('active')) {
+                    // Keep expanded if there's content
+                    if (!responseContent.textContent) {
+                        responseArea.classList.remove('active');
+                        askWidget.classList.remove('expanded');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
