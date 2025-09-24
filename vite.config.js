@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
     target: 'es2022',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'pages/update-askinbio.html')
+        main: resolve(__dirname, 'pages/search-up-top.html'),
+        'update-askinbio': resolve(__dirname, 'pages/update-askinbio.html')
       }
     }
   },
