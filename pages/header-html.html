@@ -700,10 +700,21 @@
                 <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
                 <span style="color: #6c757d;">•</span>
                 <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
+
+                <!-- Expandable Search Widget -->
+                <button class="search-chat-button" id="headerSearchButton">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <span class="ask-text">Ask...</span>
+                    <input type="text" class="search-input-field" placeholder="Ask anything..." id="searchInputField">
+                    <button type="button" class="search-submit-button" id="searchSubmitButton">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 2L19 12L9 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </button>
             </div>
         </div>
     </header>
