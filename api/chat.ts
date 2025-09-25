@@ -89,7 +89,7 @@ Please provide a thoughtful response that incorporates this enhanced context and
     const result = await streamText({
       model,
       messages: coreMessages,
-      maxCompletionTokens: 1000,
+      maxTokens: 1000,
       temperature: 0.7,
     });
 
