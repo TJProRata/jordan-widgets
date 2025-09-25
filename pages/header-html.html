@@ -640,45 +640,70 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Combined Header -->
+    <header class="header" style="border-bottom: 1px solid #000;">
         <div class="header-container">
-            <nav>
-                <div class="nav-dropdown" id="navDropdown">
-                    <button class="nav-dropdown-button" id="navDropdownButton">
-                        Widgets
-                        <svg class="nav-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M6 9L12 15L18 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                    <div class="nav-dropdown-menu" id="navDropdownMenu">
-                        <a href="search-up-top.html">Search up top</a>
-                        <a href="new-green.html">New green</a>
-                        <a href="side-rail.html">Side rail</a>
-                        <a href="top-of-article-old.html">Top of article (old)</a>
-                        <a href="middle-of-article.html">Middle of article</a>
-                        <a href="bottom-of-article-embed.html">Bottom of article embed</a>
-                        <a href="dynamic-cta.html">Dynamic cta</a>
-                        <a href="top-rail-search.html">Top rail search</a>
-                        <a href="update-askinbio.html">Update askinbio</a>
-                        <a href="header-html.html" class="active">Header HTML</a>
+            <!-- Top Navigation Bar -->
+            <div style="display: flex; justify-content: center; padding: 10px 0; border-bottom: 1px solid #e5e5e5;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Family</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Nav Bar with Logo -->
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0;">
+                <div style="display: flex; align-items: center; gap: 30px;">
+                <nav>
+                    <div class="nav-dropdown" id="navDropdown">
+                        <button class="nav-dropdown-button" id="navDropdownButton">
+                            Widgets
+                            <svg class="nav-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9L12 15L18 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="nav-dropdown-menu" id="navDropdownMenu">
+                            <a href="search-up-top.html">Search up top</a>
+                            <a href="new-green.html">New green</a>
+                            <a href="side-rail.html">Side rail</a>
+                            <a href="top-of-article-old.html">Top of article (old)</a>
+                            <a href="middle-of-article.html">Middle of article</a>
+                            <a href="bottom-of-article-embed.html">Bottom of article embed</a>
+                            <a href="dynamic-cta.html">Dynamic cta</a>
+                            <a href="top-rail-search.html">Top rail search</a>
+                            <a href="update-askinbio.html">Update askinbio</a>
+                            <a href="header-html.html" class="active">Header HTML</a>
+                        </div>
                     </div>
+                </nav>
+
+                    <!-- Additional nav items inline -->
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Atlantic Daily</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
                 </div>
-            </nav>
-            <div class="logo">POPULAR SCIENCE</div>
-            <div class="header-right">
-                <button class="search-chat-button" id="headerSearchButton" type="button">
-                    <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <div class="logo" style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px; position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC</div>
+
+                <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                    <span style="color: #6c757d;">•</span>
+                    <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    <span class="ask-text">Ask</span>
-                    <input type="text" class="search-input-field" id="searchInputField" placeholder="Ask follow-up...">
-                    <button type="button" class="search-submit-button" id="searchSubmitButton">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 2L19 12L9 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </button>
+                </div>
             </div>
         </div>
     </header>

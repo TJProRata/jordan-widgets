@@ -21,7 +21,9 @@ export default defineConfig(({ mode }) => {
         'dynamic-cta': resolve(__dirname, 'pages/dynamic-cta.html'),
         'update-askinbio': resolve(__dirname, 'pages/update-askinbio.html'),
         'search-results': resolve(__dirname, 'pages/search-results.html'),
-        'ai-search-results': resolve(__dirname, 'pages/ai-search-results.html')
+        'ai-search-results': resolve(__dirname, 'pages/ai-search-results.html'),
+        'header-html': resolve(__dirname, 'pages/header-html.html'),
+        'top-rail-search': resolve(__dirname, 'pages/top-rail-search.html')
       }
     }
   },
