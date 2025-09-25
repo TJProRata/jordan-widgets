@@ -42,7 +42,39 @@ export async function POST(req: Request) {
     } else if (OPENAI_API_KEY) {
       model = openai('gpt-4-turbo');
     } else {
-      return new Response('No AI provider configured', { status: 500 });
+      // Fallback response when no API keys configured
+      console.log('No API keys configured, using fallback response');
+
+      const latestMessage = messages[messages.length - 1];
+      const query = latestMessage?.content || '';
+      const fallbackResponse = await simulateStreamingResponse(query);
+
+      // Create a streaming response
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        start(controller) {
+          const words = fallbackResponse.split(' ');
+          let index = 0;
+
+          const interval = setInterval(() => {
+            if (index < words.length) {
+              controller.enqueue(encoder.encode(words[index] + ' '));
+              index++;
+            } else {
+              clearInterval(interval);
+              controller.close();
+            }
+          }, 50);
+        }
+      });
+
+      return new Response(stream, {
+        headers: {
+          'Content-Type': 'text/plain',
+          'Cache-Control': 'no-cache',
+          'Connection': 'keep-alive',
+        },
+      });
     }
 
     // Convert messages to core format and add system message
