@@ -344,7 +344,7 @@
         .ask-widget-inner {
             background: white;
             border-radius: 38px;
-            overflow: visible;
+            overflow: hidden;
             position: relative;
         }
 
@@ -672,6 +672,9 @@
                         </button>
                     </div>
                     <div class="response-area" id="responseArea">
+                        <!-- Last question at top -->
+                        <div class="last-question" id="lastQuestion" style="display: none; font-size: 16px; font-weight: 600; color: #333; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #e0e0e0;"></div>
+
                         <div class="generating-indicator" id="generatingIndicator">
                             <div class="spinner"></div>
                             <span id="statusText">Generating answer...</span>
@@ -695,6 +698,18 @@
                             <button class="continue-button" id="continueButton" style="margin-top: 15px; width: 100%; padding: 12px; background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
                                 Continue in new page →
                             </button>
+                        </div>
+
+                        <!-- Bottom input field -->
+                        <div class="bottom-input-wrapper" id="bottomInputWrapper" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+                            <div style="position: relative;">
+                                <input type="text" id="bottomInput" placeholder="input here" style="width: 100%; padding: 12px 40px 12px 12px; border: 1px solid #ddd; border-radius: 25px; font-size: 14px; outline: none; box-sizing: border-box;">
+                                <button id="bottomSubmit" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 8px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666">
+                                        <path d="M9 2L19 12L9 22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -761,6 +776,10 @@
             const responseContent = document.getElementById('responseContent');
             const responseActions = document.getElementById('responseActions');
             const relatedSection = document.getElementById('relatedSection');
+            const bottomInput = document.getElementById('bottomInput');
+            const bottomSubmit = document.getElementById('bottomSubmit');
+            const bottomInputWrapper = document.getElementById('bottomInputWrapper');
+            const lastQuestion = document.getElementById('lastQuestion');
 
             // Determine server URL based on environment
             // Use localhost:3000 for development, Vercel API routes for production
@@ -769,13 +788,27 @@
                 : window.location.origin;
 
             // Handle search/ask functionality with real API
-            async function handleAsk() {
-                const query = askInput.value.trim();
+            async function handleAsk(source = 'top') {
+                const query = source === 'bottom' ? bottomInput.value.trim() : askInput.value.trim();
                 if (!query) return;
+
+                // Hide initial input after first question
+                document.querySelector('.search-input-wrapper').style.display = 'none';
 
                 // Expand the widget and show response area
                 askWidget.classList.add('expanded');
                 responseArea.classList.add('active');
+
+                // Show last question at top
+                lastQuestion.textContent = query;
+                lastQuestion.style.display = 'block';
+
+                // Show bottom input wrapper
+                bottomInputWrapper.style.display = 'block';
+
+                // Clear inputs
+                askInput.value = '';
+                bottomInput.value = '';
 
                 // Show generating indicator
                 generatingIndicator.classList.add('active');
@@ -885,6 +918,15 @@
             askInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     handleAsk();
+                }
+            });
+
+            // Bottom input event listeners
+            bottomSubmit.addEventListener('click', () => handleAsk('bottom'));
+
+            bottomInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleAsk('bottom');
                 }
             });
 
