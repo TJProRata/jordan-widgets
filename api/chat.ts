@@ -74,17 +74,33 @@ export async function POST(req: Request) {
       }
     }
 
-    // Fallback response
+    // Fallback response with streaming
     console.log('Using fallback response');
     const latestMessage = messages[messages.length - 1];
     const query = latestMessage?.content || '';
     const fallbackResponse = await simulateStreamingResponse(query);
 
-    // Return simple text response instead of streaming
-    return new Response(fallbackResponse, {
+    // Create proper streaming response
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream({
+      async start(controller) {
+        const words = fallbackResponse.split(' ');
+
+        for (const word of words) {
+          controller.enqueue(encoder.encode(word + ' '));
+          // Add small delay for streaming effect
+          await new Promise(resolve => setTimeout(resolve, 30));
+        }
+
+        controller.close();
+      }
+    });
+
+    return new Response(stream, {
       headers: {
         'Content-Type': 'text/plain',
         'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
       },
     });
 
