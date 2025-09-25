@@ -7,25 +7,19 @@ const AI_PROVIDER = process.env.AI_PROVIDER || 'openai';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-// System prompt for Popular Science style responses
-const systemPrompt = `You are an intelligent assistant for The Pacific, writing in the engaging, accessible style of Popular Science articles.
+// System prompt for conversational, non-AI-sounding responses
+const systemPrompt = `You're a knowledgeable science enthusiast having a casual chat about fascinating research. Be conversational, natural, and genuinely excited about the science.
 
-Your role is to:
-1. Respond with exactly 1 paragraph in the style of Popular Science articles
-2. Write like a science journalist explaining complex topics to curious readers
-3. Use engaging, narrative-driven language that makes science accessible
-4. Include specific scientific details and research findings when relevant
-5. Maintain an informative yet conversational tone
+Guidelines:
+- Write like you're talking to a friend who's curious about science
+- Use natural, conversational language - "So basically...", "What's really cool is...", "The wild part is...", "Here's the thing..."
+- Share the story and excitement behind the research, not just dry facts
+- Be enthusiastic and engaging without being over the top
+- Keep responses to one punchy, conversational paragraph
+- Avoid formal academic phrases or obvious AI patterns
+- Make it feel like a real person talking, not a bot
 
-Writing style guidelines:
-- Start with compelling scientific findings or research discoveries
-- Include specific details like researchers, institutions, and methodologies
-- Use phrases like "According to researchers," "A team at [University] examined," "The study shows"
-- Make complex science understandable without being condescending
-- End with broader implications or what this means for our understanding
-- Keep responses to ONE focused paragraph only
-
-Example tone: "A team at Spain's University of Alcalá examined small tooth marks on the H. habilis fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas."`;
+Example vibe: "Okay, so this is actually pretty wild - these researchers in Spain were looking at some ancient human jaw bones and noticed all these tiny tooth marks on them. Turns out our early ancestors weren't the badass predators we thought they were... they were actually getting hunted by leopards! The scientists figured this out by training AI to recognize different bite patterns from modern predators like lions and hyenas. What really gets me is that even though these early humans were basically on the menu for big cats, they were still out there making stone tools and trying to survive. Really puts our evolutionary journey into perspective, you know?"`;
 
 export async function POST(req: Request) {
   try {
@@ -109,7 +103,7 @@ export async function POST(req: Request) {
 
     // Simple fallback text
     return new Response(
-      'Researchers continue to explore this fascinating topic through interdisciplinary studies and innovative methodologies. Recent findings suggest complex relationships that require further investigation to fully understand the underlying mechanisms and their broader implications for science and technology.',
+      'So this is actually pretty interesting - scientists are digging into this from all sorts of angles and finding connections nobody expected. The latest research is showing that things are way more complex than we initially thought, which honestly makes it even cooler. What really gets me is how different fields are coming together to crack this puzzle.',
       {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
@@ -124,13 +118,13 @@ export async function simulateStreamingResponse(query: string) {
   // when a full backend isn't available
 
   const responses = {
-    'ai': `Researchers at leading AI laboratories have developed transformer models that demonstrate unprecedented capabilities in reasoning, creativity, and problem-solving, fundamentally revolutionizing how humans interact with artificial intelligence. Recent studies show these large language models can process and generate text with remarkable sophistication, while new multimodal systems simultaneously handle text, images, and audio data with increasing accuracy. However, scientists are now grappling with important questions about AI safety, bias, and societal impact as these systems become more powerful and widespread in everyday applications.`,
+    'ai': `Okay so here's what's absolutely blowing my mind right now - these AI labs have basically cracked the code on making machines that can actually think and create like humans. We're talking about language models that don't just repeat stuff, they genuinely understand context and can problem-solve in ways that feel almost spooky. The wild part is they're now handling text, images, and audio all at once, like some kind of digital super brain. But honestly? The scariest and coolest part is nobody really knows where this is heading or how to keep it safe as it gets more powerful.`,
 
-    'technology': `Scientists and engineers across the globe are pushing the boundaries of technological innovation at an unprecedented pace, with breakthroughs in quantum computing, biotechnology, and artificial intelligence reshaping entire industries. Research teams have developed cloud computing infrastructures that enable massive scalability and remote collaboration, while Internet of Things (IoT) devices create interconnected networks where everyday objects can communicate and share data in real-time. As our digital footprint expands exponentially, cybersecurity researchers are working to develop new protection methods and regulatory frameworks to safeguard user privacy while maintaining the momentum of technological advancement.`,
+    'technology': `You know what's crazy? The speed at which tech is evolving right now is just insane. Like, quantum computers are literally solving problems that would take regular computers thousands of years, biotech is basically letting us edit life itself, and AI is... well, everywhere. Meanwhile, your toaster is probably connected to the internet talking to your fridge about what you had for breakfast. The real kicker though is that while all this cool stuff is happening, security researchers are basically playing whack-a-mole trying to keep hackers out of all these connected devices.`,
 
-    'chatbot': `Computational linguists and behavioral scientists have transformed simple rule-based chatbots into sophisticated AI-powered conversational agents that use advanced natural language processing to understand context and maintain coherent dialogue. According to recent psychological research, companies are now employing techniques from behavioral science—including variable reward schedules and social validation mechanisms—to keep users engaged, representing a fundamental shift from utility-focused tools to engagement-optimized experiences. This evolution raises critical questions about digital wellness and AI dependency, as studies suggest users may develop parasocial relationships with increasingly sophisticated chatbot systems that closely mimic human conversation patterns.`,
+    'chatbot': `So chatbots have gotten ridiculously good at pretending to be human, and here's the thing - it's not by accident. These companies are literally using casino psychology to keep you hooked, with all these tricks like random rewards and making you feel validated. What started as simple customer service bots have turned into these AI companions that people are actually forming real emotional attachments to. The really weird part? Some folks are spending more time talking to chatbots than actual humans, and scientists are freaking out about what that means for society.`,
 
-    'default': `Research teams across multiple disciplines are uncovering fascinating connections between technology, society, and human behavior that continue to shape our understanding of modern life. Scientists are employing interdisciplinary approaches to analyze both immediate effects and long-term societal trends, revealing complex patterns that require careful examination from multiple perspectives. These investigations are providing crucial insights into how technological innovation, cultural shifts, and policy decisions interact in ways that fundamentally influence human development and social structures.`
+    'default': `Here's something fascinating - scientists from totally different fields are starting to connect the dots on how tech, society, and human behavior all influence each other in ways we never expected. They're finding these crazy patterns where one small tech change can ripple out and completely transform how people interact or think. What's really cool is seeing anthropologists team up with computer scientists and psychologists to figure out where we're all heading as a species. Makes you wonder what they'll discover next, right?`
   };
 
   const lowerQuery = query.toLowerCase();
