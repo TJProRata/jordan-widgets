@@ -1,39 +1,21 @@
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
 import { streamText, convertToCoreMessages } from 'ai';
-import { context7Client, type Context7Response } from './context7.js';
 
 // Configuration for AI providers
 const AI_PROVIDER = process.env.AI_PROVIDER || 'openai';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-// Enhanced Context7 integration
-async function getEnhancedContext(query: string): Promise<{ context: string, sources: any[] }> {
-  try {
-    const context7Response: Context7Response = await context7Client.getContext(query);
-    return {
-      context: context7Response.context,
-      sources: context7Response.sources
-    };
-  } catch (error) {
-    console.warn('Context7 integration failed, using fallback:', error);
-    return {
-      context: 'From The Atlantic knowledge base and expert analysis: ',
-      sources: []
-    };
-  }
-}
-
-// Enhanced system prompt with Popular Science context
-const systemPrompt = `You are an intelligent assistant for Popular Science, writing in the engaging, accessible style of the leopards and human evolution article.
+// System prompt for Popular Science style responses
+const systemPrompt = `You are an intelligent assistant for The Pacific, writing in the engaging, accessible style of Popular Science articles.
 
 Your role is to:
 1. Respond with exactly 1 paragraph in the style of Popular Science articles
 2. Write like a science journalist explaining complex topics to curious readers
 3. Use engaging, narrative-driven language that makes science accessible
 4. Include specific scientific details and research findings when relevant
-5. Maintain the tone from the leopards article: informative yet conversational
+5. Maintain an informative yet conversational tone
 
 Writing style guidelines:
 - Start with compelling scientific findings or research discoveries
@@ -43,9 +25,7 @@ Writing style guidelines:
 - End with broader implications or what this means for our understanding
 - Keep responses to ONE focused paragraph only
 
-Example tone: "A team at Spain's University of Alcalá examined small tooth marks on the H. habilis fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas."
-
-You have access to enhanced knowledge through Context7 integration, which provides up-to-date documentation and expert sources.`;
+Example tone: "A team at Spain's University of Alcalá examined small tooth marks on the H. habilis fossils originally recovered from the Olduvai Gorge in Tanzania. To do this, they first trained an advanced machine learning model on an image library of nearly 1,500 photos of bite indentations made by present-day carnivores such as lions, crocodiles, wolves, and hyenas."`;
 
 export async function POST(req: Request) {
   try {
@@ -54,20 +34,6 @@ export async function POST(req: Request) {
     if (!messages || !Array.isArray(messages)) {
       return new Response('Invalid messages format', { status: 400 });
     }
-
-    // Get the latest user message for context enhancement
-    const latestMessage = messages[messages.length - 1];
-    const enhancedContext = latestMessage?.content ?
-      await getEnhancedContext(latestMessage.content) : { context: '', sources: [] };
-
-    // Enhanced system message with Context7 integration
-    const enhancedSystemPrompt = `${systemPrompt}
-
-Enhanced context from Context7: ${enhancedContext.context}
-
-Relevant sources available: ${enhancedContext.sources.map(s => s.title).join(', ')}
-
-Please provide a thoughtful response that incorporates this enhanced context and, when appropriate, reference the relevant sources.`;
 
     // Configure AI model based on provider
     let model;
@@ -79,9 +45,9 @@ Please provide a thoughtful response that incorporates this enhanced context and
       return new Response('No AI provider configured', { status: 500 });
     }
 
-    // Convert messages to core format and add enhanced system message
+    // Convert messages to core format and add system message
     const coreMessages = convertToCoreMessages([
-      { role: 'system', content: enhancedSystemPrompt },
+      { role: 'system', content: systemPrompt },
       ...messages
     ]);
 
@@ -89,7 +55,6 @@ Please provide a thoughtful response that incorporates this enhanced context and
     const result = await streamText({
       model,
       messages: coreMessages,
-      maxTokens: 1000,
       temperature: 0.7,
     });
 
