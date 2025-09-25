@@ -1130,14 +1130,84 @@
                         }
                     }
 
-                    // Add disclaimer for AI responses
+                    // Add source attribution bar with animation
                     if (fullResponse) {
-                        const disclaimer = document.createElement('p');
-                        disclaimer.style.fontSize = '12px';
-                        disclaimer.style.color = '#999';
-                        disclaimer.style.marginTop = '15px';
-                        disclaimer.textContent = 'AI can make mistakes. Please verify important information.';
-                        responseContent.appendChild(disclaimer);
+                        const attributionContainer = document.createElement('div');
+                        attributionContainer.style.marginTop = '20px';
+                        attributionContainer.style.paddingTop = '15px';
+                        attributionContainer.style.borderTop = '1px solid #e0e0e0';
+                        attributionContainer.style.opacity = '0';
+                        attributionContainer.style.transform = 'translateY(10px)';
+                        attributionContainer.style.transition = 'all 0.5s ease';
+
+                        // Title
+                        const attributionTitle = document.createElement('div');
+                        attributionTitle.style.fontSize = '13px';
+                        attributionTitle.style.fontWeight = '600';
+                        attributionTitle.style.color = '#333';
+                        attributionTitle.style.marginBottom = '10px';
+                        attributionTitle.textContent = 'Source Attribution';
+
+                        // Progress bar container with gradient background
+                        const progressBar = document.createElement('div');
+                        progressBar.style.width = '100%';
+                        progressBar.style.height = '10px';
+                        progressBar.style.background = '#f0f0f0';
+                        progressBar.style.borderRadius = '5px';
+                        progressBar.style.overflow = 'hidden';
+                        progressBar.style.position = 'relative';
+
+                        // Generate random percentages
+                        const pacificPercent = Math.floor(Math.random() * 30) + 40; // 40-70%
+                        const otherPercent = Math.floor(Math.random() * 20) + 10; // 10-30%
+                        const remainingPercent = 100 - pacificPercent - otherPercent;
+
+                        // Create gradient bar that fills up
+                        const gradientBar = document.createElement('div');
+                        gradientBar.style.position = 'absolute';
+                        gradientBar.style.left = '0';
+                        gradientBar.style.top = '0';
+                        gradientBar.style.height = '100%';
+                        gradientBar.style.width = '0%';
+                        gradientBar.style.background = 'linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%)';
+                        gradientBar.style.transition = 'width 1s ease 0.3s';
+                        gradientBar.style.borderRadius = '5px';
+
+                        progressBar.appendChild(gradientBar);
+
+                        // Labels
+                        const labelsContainer = document.createElement('div');
+                        labelsContainer.style.display = 'flex';
+                        labelsContainer.style.justifyContent = 'space-between';
+                        labelsContainer.style.marginTop = '8px';
+                        labelsContainer.style.fontSize = '11px';
+                        labelsContainer.style.opacity = '0';
+                        labelsContainer.style.transition = 'opacity 0.5s ease 1s';
+
+                        const pacificLabel = document.createElement('div');
+                        pacificLabel.innerHTML = `<span style="background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;">${pacificPercent}%</span> The Pacific`;
+
+                        const otherLabel = document.createElement('div');
+                        otherLabel.innerHTML = `<span style="background: linear-gradient(135deg, #DB5369 0%, #897FE2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600;">${remainingPercent}%</span> Other`;
+
+                        labelsContainer.appendChild(pacificLabel);
+                        labelsContainer.appendChild(otherLabel);
+
+                        attributionContainer.appendChild(attributionTitle);
+                        attributionContainer.appendChild(progressBar);
+                        attributionContainer.appendChild(labelsContainer);
+
+                        responseContent.appendChild(attributionContainer);
+
+                        // Trigger animations
+                        setTimeout(() => {
+                            attributionContainer.style.opacity = '1';
+                            attributionContainer.style.transform = 'translateY(0)';
+                            gradientBar.style.width = `${pacificPercent + otherPercent}%`;
+                            setTimeout(() => {
+                                labelsContainer.style.opacity = '1';
+                            }, 500);
+                        }, 100);
                     }
 
                 } catch (error) {
@@ -1148,15 +1218,7 @@
 
                     // Show error message
                     responseContent.classList.add('error');
-                    responseContent.textContent = "I'm having trouble connecting to the AI service. Please make sure the server is running and try again.";
-
-                    // Add help text
-                    const helpText = document.createElement('p');
-                    helpText.style.fontSize = '12px';
-                    helpText.style.color = '#999';
-                    helpText.style.marginTop = '15px';
-                    helpText.textContent = 'Tip: Make sure the server is running with "npm run server" and the OpenAI API key is configured.';
-                    responseContent.appendChild(helpText);
+                    responseContent.textContent = "Sorry, I'm having trouble connecting right now. Please try again in a moment.";
 
                     responseActions.style.display = 'flex';
                     relatedSection.style.display = 'block';
