@@ -840,6 +840,9 @@
                         <div class="related-section" id="relatedSection" style="display: none;">
                             <h4>Related</h4>
                             <div class="related-item">What are the benefits of using a triple-laser projector like JMGO's N1S Pro?</div>
+                            <button class="continue-button" id="continueButton" style="margin-top: 15px; width: 100%; padding: 12px; background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                Continue in new page →
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1262,6 +1265,28 @@
                     handleAsk();
                 });
             });
+
+            // Continue button click handler
+            const continueButton = document.getElementById('continueButton');
+            if (continueButton) {
+                continueButton.addEventListener('click', function() {
+                    // Get the current question from the input field or use the related question
+                    let query = askInput.value.trim();
+
+                    // If there's no query in the input, use the related question
+                    if (!query) {
+                        const relatedItem = document.querySelector('.related-item');
+                        if (relatedItem) {
+                            query = relatedItem.textContent.trim();
+                        }
+                    }
+
+                    // Open in ai-search-results.html with the query
+                    if (query) {
+                        window.open(`ai-search-results.html?q=${encodeURIComponent(query)}`, '_blank');
+                    }
+                });
+            }
 
             // Collapse widget when clicking outside
             document.addEventListener('click', function(e) {
