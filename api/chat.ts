@@ -89,11 +89,11 @@ Please provide a thoughtful response that incorporates this enhanced context and
     const result = await streamText({
       model,
       messages: coreMessages,
-      maxTokens: 1000,
+      maxCompletionTokens: 1000,
       temperature: 0.7,
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (error) {
     console.error('Chat API error:', error);
     return new Response(
