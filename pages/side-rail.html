@@ -3,111 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbait Is Taking Over the Internet - The Atlantic</title>
+    <title>Space Elevators Move From Fiction to Reality - The Pacific</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
-        /* Dropdown Navigation Styles */
-        .header-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        /* Position sticky search widget at bottom right */
+        .sticky-search-widget {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            left: auto !important;
+            transform: none !important;
+            width: 300px !important;  /* 3/4 of original 400px width */
+            max-width: calc(100vw - 40px) !important;
+            z-index: 9999 !important;
         }
 
-        .header-right {
-            margin-left: auto;
+        /* Adjust container width to match */
+        .sticky-search-container {
+            width: 100% !important;
         }
 
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
+        /* Ensure the search input wrapper scales properly */
+        .search-input-wrapper {
+            width: 100% !important;
         }
 
-        .nav-dropdown-button {
-            background: #333;
-            color: white;
-            padding: 10px 15px;
-            font-size: 12px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-dropdown-button:hover {
-            background: #555;
-        }
-
-        .nav-dropdown-arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .nav-dropdown.active .nav-dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .nav-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            min-width: 200px;
+        /* Suggestion questions container */
+        .suggestion-questions {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
             display: none;
-            z-index: 1000;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 9998;
+            animation: slideUp 0.3s ease-out;
         }
 
-        .nav-dropdown.active .nav-dropdown-menu {
-            display: block;
+        .suggestion-questions.active {
+            display: flex;
         }
 
-        .nav-dropdown-menu a {
-            display: block;
-            padding: 12px 16px;
-            text-decoration: none;
+        /* Individual question styling */
+        .suggestion-question {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 10px 16px;
+            font-size: 14px;
             color: #333;
-            font-size: 12px;
-            font-weight: 500;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background-color 0.2s ease;
-        }
-
-        .nav-dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .nav-dropdown-menu a:hover {
-            background-color: #f8f8f8;
-            color: #000;
-        }
-
-        .nav-dropdown-menu a.active {
-            background-color: #333;
-            color: white;
-        }
-
-        .search-icon {
-            width: 20px;
-            height: 20px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            line-height: 1.4;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
+        .suggestion-question:hover {
+            background: #f8f9fa;
+            border-color: #667eea;
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        /* Animation for sliding up */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsiveness - keep widget accessible */
+        @media (max-width: 768px) {
+            .sticky-search-widget {
+                width: calc(100vw - 40px) !important;
+                right: 20px !important;
+                bottom: 20px !important;
+                max-width: 300px !important;
+            }
+
+            .suggestion-questions {
+                width: calc(100vw - 40px);
+                max-width: 300px;
+            }
+        }
+
+        /* For very small screens, adjust positioning */
+        @media (max-width: 480px) {
+            .sticky-search-widget {
+                right: 10px !important;
+                bottom: 10px !important;
+                width: calc(100vw - 20px) !important;
+            }
+
+            .suggestion-questions {
+                right: 10px;
+                width: calc(100vw - 20px);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="site-header">
+    <!-- Combined Header -->
+    <header class="site-header" style="border-bottom: 1px solid #000;">
         <div class="container">
-            <div class="header-container">
+            <!-- Top Navigation Bar -->
+            <div style="display: flex; justify-content: center; padding: 10px 0; border-bottom: 1px solid #e5e5e5;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Family</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Nav Bar with Logo -->
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0;">
+                <div style="display: flex; align-items: center; gap: 30px;">
                 <nav>
                     <div class="nav-dropdown" id="navDropdown">
                         <button class="nav-dropdown-button" id="navDropdownButton">
@@ -124,14 +149,27 @@
                             <a href="middle-of-article.html">Middle of article</a>
                             <a href="bottom-of-article-embed.html">Bottom of article embed</a>
                             <a href="dynamic-cta.html">Dynamic cta</a>
+                            <a href="top-rail-search.html">Top rail search</a>
                             <a href="update-askinbio.html">Update askinbio</a>
                             <a href="header-html.html">Header HTML</a>
                         </div>
                     </div>
                 </nav>
-                <div class="logo">THE ATLANTIC</div>
-                <div class="header-right">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <!-- Additional nav items inline -->
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Atlantic Daily</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
+                </div>
+
+                <div class="logo" style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px; position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC</div>
+
+                <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                    <span style="color: #6c757d;">•</span>
+                    <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -140,14 +178,13 @@
         </div>
     </header>
 
-
     <!-- Main Article -->
     <main class="main-content">
         <div class="container">
             <article class="article">
                 <div class="article-header">
                     <div class="article-category">TECHNOLOGY</div>
-                    <h1 class="article-title">Chatbait Is Taking Over the Internet</h1>
+                    <h1 class="article-title">Space Elevators Move From Fiction to Reality</h1>
                     <p class="article-subtitle">How chatbots keep you talking</p>
                     <div class="article-meta">
                         <span class="author">By Lila Shroff</span>
@@ -221,58 +258,34 @@
         </div>
     </footer>
 
+    <!-- Suggestion Questions -->
+    <div class="suggestion-questions" id="suggestionQuestions">
+        <div class="suggestion-question" data-question="How do chatbots manipulate user engagement?">
+            How do chatbots manipulate user engagement?
+        </div>
+        <div class="suggestion-question" data-question="What are parasocial AI relationships?">
+            What are parasocial AI relationships?
+        </div>
+        <div class="suggestion-question" data-question="How do engagement tactics affect mental health?">
+            How do engagement tactics affect mental health?
+        </div>
+    </div>
+
     <!-- Sticky Floating Search Widget -->
-    <div class="sticky-search-widget collapsed" id="stickyWidget">
-        <div class="widget-inner">
-            <button class="widget-toggle-btn" id="toggleBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="search-icon">
-                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="btn-text">Ask</span>
-            </button>
-            <div class="sticky-search-container">
-                <div class="search-input-wrapper" id="searchWrapper">
-                    <input type="text" class="search-input" placeholder="Ask anything..." id="stickySearchInput">
-                    <button type="button" class="search-button" id="stickySearchButton">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
+    <div class="sticky-search-widget">
+        <div class="sticky-search-container">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Ask anything..." id="stickySearchInput">
+                <button type="button" class="search-button" id="stickySearchButton">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        // Navigation Dropdown Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const navDropdown = document.getElementById('navDropdown');
-            const navDropdownButton = document.getElementById('navDropdownButton');
-
-            if (navDropdown && navDropdownButton) {
-                // Toggle dropdown on button click
-                navDropdownButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    navDropdown.classList.toggle('active');
-                });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!navDropdown.contains(e.target)) {
-                        navDropdown.classList.remove('active');
-                    }
-                });
-
-                // Close dropdown when pressing Escape key
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        navDropdown.classList.remove('active');
-                    }
-                });
-            }
-        });
-
         // Dynamic Questions for each scroll quadrant
         const SCROLL_QUESTIONS = [
             "Ask anything...", // Default/Top (0-25%)
@@ -349,55 +362,39 @@
             }, 100); // Throttle to 100ms
         }
 
-        // Widget expansion state
-        let isWidgetExpanded = false;
+        // Navigation Dropdown Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navDropdown = document.getElementById('navDropdown');
+            const navDropdownButton = document.getElementById('navDropdownButton');
 
-        // Toggle widget expansion
-        function toggleWidget() {
-            const widget = document.getElementById('stickyWidget');
-            const toggleBtn = document.getElementById('toggleBtn');
-            const searchInput = document.getElementById('stickySearchInput');
+            if (navDropdown && navDropdownButton) {
+                // Toggle dropdown on button click
+                navDropdownButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navDropdown.classList.toggle('active');
+                });
 
-            isWidgetExpanded = !isWidgetExpanded;
-
-            if (isWidgetExpanded) {
-                widget.classList.remove('collapsed');
-                widget.classList.add('expanded');
-                setTimeout(() => {
-                    if (searchInput) {
-                        searchInput.focus();
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navDropdown.contains(e.target)) {
+                        navDropdown.classList.remove('active');
                     }
-                }, 300);
-            } else {
-                widget.classList.add('collapsed');
-                widget.classList.remove('expanded');
-                if (searchInput) {
-                    searchInput.value = '';
-                }
+                });
+
+                // Close dropdown when pressing Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        navDropdown.classList.remove('active');
+                    }
+                });
             }
-        }
+        });
 
         // Add event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            const widget = document.getElementById('stickyWidget');
-            const toggleBtn = document.getElementById('toggleBtn');
             const searchInput = document.querySelector('#stickySearchInput');
             const searchButton = document.querySelector('#stickySearchButton');
-
-            // Toggle button click
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    toggleWidget();
-                });
-            }
-
-            // Click outside to collapse
-            document.addEventListener('click', function(e) {
-                if (isWidgetExpanded && widget && !widget.contains(e.target)) {
-                    toggleWidget();
-                }
-            });
 
             // Search functionality
             if (searchInput) {
@@ -431,6 +428,46 @@
             currentQuestionIndex = initialQuadrant;
             if (searchInput) {
                 searchInput.placeholder = SCROLL_QUESTIONS[initialQuadrant];
+            }
+
+            // Suggestion questions functionality
+            const suggestionQuestions = document.getElementById('suggestionQuestions');
+            const searchWidget = document.querySelector('.sticky-search-widget');
+            const suggestionItems = document.querySelectorAll('.suggestion-question');
+
+            // Show suggestions when search input is clicked
+            if (searchInput && suggestionQuestions) {
+                searchInput.addEventListener('click', function(e) {
+                    if (this.value === '') {
+                        suggestionQuestions.classList.add('active');
+                        e.stopPropagation();
+                    }
+                });
+
+                // Hide suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchWidget.contains(e.target) && !suggestionQuestions.contains(e.target)) {
+                        suggestionQuestions.classList.remove('active');
+                    }
+                });
+
+                // Handle suggestion clicks
+                suggestionItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const question = this.getAttribute('data-question');
+                        searchInput.value = question;
+                        suggestionQuestions.classList.remove('active');
+                        // Automatically submit the search
+                        handleSearch();
+                    });
+                });
+
+                // Hide suggestions when user starts typing
+                searchInput.addEventListener('input', function() {
+                    if (this.value !== '') {
+                        suggestionQuestions.classList.remove('active');
+                    }
+                });
             }
         });
     </script>

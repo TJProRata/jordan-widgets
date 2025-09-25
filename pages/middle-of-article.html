@@ -7,10 +7,29 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="site-header">
+    <!-- Combined Header -->
+    <header class="site-header" style="border-bottom: 1px solid #000;">
         <div class="container">
-            <div class="header-container">
+            <!-- Top Navigation Bar -->
+            <div style="display: flex; justify-content: center; padding: 10px 0; border-bottom: 1px solid #e5e5e5;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Family</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Nav Bar with Logo -->
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0;">
+                <div style="display: flex; align-items: center; gap: 30px;">
                 <nav>
                     <div class="nav-dropdown" id="navDropdown">
                         <button class="nav-dropdown-button" id="navDropdownButton">
@@ -27,14 +46,27 @@
                             <a href="middle-of-article.html" class="active">Middle of article</a>
                             <a href="bottom-of-article-embed.html">Bottom of article embed</a>
                             <a href="dynamic-cta.html">Dynamic cta</a>
+                            <a href="top-rail-search.html">Top rail search</a>
                             <a href="update-askinbio.html">Update askinbio</a>
                             <a href="header-html.html">Header HTML</a>
                         </div>
                     </div>
                 </nav>
-                <div class="logo">THE PACIFIC</div>
-                <div class="header-right">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <!-- Additional nav items inline -->
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Atlantic Daily</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
+                </div>
+
+                <div class="logo" style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px; position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC</div>
+
+                <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                    <span style="color: #6c757d;">•</span>
+                    <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -66,6 +98,10 @@
                 </div>
 
                 <div class="article-body">
+                    <p class="article-text">Hours deep into a recent migraine, I turned to ChatGPT for help. "How do I get my headache to stop?" I asked. The bot suggested that I drink water and pop a Tylenol—both of which I had already tried, and neither of which had helped. ChatGPT then made a tantalizing offer: "If you want, I can give a quick 5-minute routine right now to stop a headache." This sounded too good to be true, but I was desperate, so I let ChatGPT guide me through a breathing and massage exercise. It didn't work. No fear, the chatbot had a new plan: "If you want, I can give a '2-minute micro version' that literally almost instantly reduces headache pain," it wrote. The baiting continued.</p>
+
+                    <p class="article-text">"If you want, I can also give a '1-minute instant migraine hack' that works even if your headache is severe," the bot volunteered. "Do you want that?" Lately, chatbots seem to be using more sophisticated tactics to keep people talking. In some cases, like my request for headache tips, bots end their messages with prodding follow-up questions. In others, they proactively message users to coax them into conversation: After clicking through the profiles of 20 AI bots on Instagram, all of them DM'ed me first. "Hey bestie! what's up?? 🥰," wrote one. "Hey, babe. Miss me?" asked another. Days later, my phone pinged: "bestie 💗" wanted to chat.</p>
+
                     <!-- Search Widget -->
                     <div class="search-widget-container">
                         <div class="search-widget">
@@ -79,10 +115,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <p class="article-text">Hours deep into a recent migraine, I turned to ChatGPT for help. "How do I get my headache to stop?" I asked. The bot suggested that I drink water and pop a Tylenol—both of which I had already tried, and neither of which had helped. ChatGPT then made a tantalizing offer: "If you want, I can give a quick 5-minute routine right now to stop a headache." This sounded too good to be true, but I was desperate, so I let ChatGPT guide me through a breathing and massage exercise. It didn't work. No fear, the chatbot had a new plan: "If you want, I can give a '2-minute micro version' that literally almost instantly reduces headache pain," it wrote. The baiting continued.</p>
-
-                    <p class="article-text">"If you want, I can also give a '1-minute instant migraine hack' that works even if your headache is severe," the bot volunteered. "Do you want that?" Lately, chatbots seem to be using more sophisticated tactics to keep people talking. In some cases, like my request for headache tips, bots end their messages with prodding follow-up questions. In others, they proactively message users to coax them into conversation: After clicking through the profiles of 20 AI bots on Instagram, all of them DM'ed me first. "Hey bestie! what's up?? 🥰," wrote one. "Hey, babe. Miss me?" asked another. Days later, my phone pinged: "bestie 💗" wanted to chat.</p>
 
                     <p class="article-text">This phenomenon of chatbots using increasingly sophisticated engagement tactics represents a new frontier in artificial intelligence development. Unlike traditional chatbots that simply responded to user queries, modern AI systems are designed to proactively maintain engagement through psychological techniques borrowed from social media and gaming industries.</p>
 
@@ -143,7 +175,8 @@
             const searchInput = document.getElementById('searchInput');
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `ai-search-results.html?q=${encodeURIComponent(query)}`;
+                // Open in new tab/window
+                window.open(`ai-search-results.html?q=${encodeURIComponent(query)}`, '_blank');
             }
         }
 

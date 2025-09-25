@@ -17,7 +17,7 @@
             font-size: 24px;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid #e74c3c;
             text-align: left;
@@ -47,6 +47,46 @@
             gap: 10px;
             color: #6c757d;
             font-style: italic;
+        }
+
+        .loading-stage-container {
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-stage {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: opacity 0.4s ease-in-out;
+            opacity: 0;
+        }
+
+        .loading-stage.visible {
+            opacity: 1;
+        }
+
+        .spinner-icon {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #e9ecef;
+            border-top: 2px solid #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stage-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #495057;
         }
 
         .loading-dots {
@@ -81,16 +121,16 @@
         }
 
         .message {
-            margin-bottom: 20px;
-            padding: 15px 0;
+            margin-bottom: 15px;
+            padding: 10px 0;
         }
 
         .message.user {
             color: #2c3e50;
             font-weight: 600;
             font-size: 18px;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
             border-bottom: 2px solid #e74c3c;
         }
 
@@ -190,34 +230,396 @@
         .suggestion-chip:hover {
             background: #dee2e6;
         }
+
+        .attribution-section {
+            margin: 10px 0 15px 0;
+        }
+
+        .attribution-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .combined-attribution-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .attribution-segment {
+            height: 100%;
+            transition: width 1.5s ease-in-out;
+            width: 0%;
+        }
+
+        .attribution-segment.primary {
+            background: #e74c3c;
+        }
+
+        .attribution-segment.secondary {
+            background: #3498db;
+        }
+
+        .attribution-segment.tertiary {
+            background: #95a5a6;
+        }
+
+        .attribution-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .attribution-label {
+            font-weight: 500;
+        }
+
+        .attribution-label.primary {
+            color: #e74c3c;
+        }
+
+        .attribution-label.secondary {
+            color: #3498db;
+        }
+
+        .attribution-label.tertiary {
+            color: #95a5a6;
+        }
+
+        .sources-section {
+            margin: 15px 0 20px 0;
+            position: relative;
+            padding: 0 60px; /* Add padding for carousel buttons */
+        }
+
+        .sources-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .sources-carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            min-height: 150px;
+            max-width: 648px; /* 3 cards * 216px */
+            margin: 0 auto;
+        }
+
+        .sources-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .sources-carousel {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 16px;
+            width: max-content;
+        }
+
+        .sources-grid {
+            display: flex;
+            gap: 16px;
+            min-width: 100%;
+        }
+
+        .source-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            flex: 0 0 200px;
+            min-width: 200px;
+            max-width: 220px;
+        }
+
+        .source-card.active {
+            border-color: #e74c3c;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.1);
+        }
+
+        .source-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            border-color: #e74c3c;
+        }
+
+        .source-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .source-favicon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: #e74c3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .source-domain {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .source-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .source-snippet {
+            font-size: 11px;
+            color: #6c757d;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .source-attribution {
+            font-size: 12px;
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        .sources-section {
+            position: relative;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            position: static;
+        }
+
+        .carousel-button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            margin: 0 10px;
+        }
+
+        .carousel-button#prevButton {
+            margin-right: 15px;
+        }
+
+        .carousel-button#nextButton {
+            margin-left: 15px;
+        }
+
+        .carousel-button:hover:not(:disabled) {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .carousel-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #bdc3c7;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            background: #e74c3c;
+        }
+
+        .skeleton-sources {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 16px;
+            margin: 15px 0;
+            overflow: hidden;
+            width: 100%;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .skeleton-source-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            animation: skeletonPulse 1.5s ease-in-out infinite alternate;
+            flex: 0 0 200px;
+            min-width: 200px;
+            max-width: 200px;
+            height: auto;
+        }
+
+        .skeleton-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-favicon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            background: #e9ecef;
+        }
+
+        .skeleton-domain {
+            width: 60px;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+
+        .skeleton-title {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .skeleton-snippet {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .skeleton-snippet:last-of-type {
+            width: 75%;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-attribution {
+            width: 50px;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+
+        @keyframes skeletonPulse {
+            0% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="site-header">
+    <!-- Combined Header -->
+    <header class="site-header" style="border-bottom: 1px solid #000;">
         <div class="container">
-            <nav class="main-nav">
-                <div class="nav-left">
-                    <ul class="nav-menu">
-                        <li><a href="search-up-top.html" class="nav-item">Search up top</a></li>
-                        <li><a href="new-green.html" class="nav-item">New green</a></li>
-                        <li><a href="side-rail.html" class="nav-item">Side rail</a></li>
-                        <li><a href="top-of-article-old.html" class="nav-item">Top of article (old)</a></li>
-                        <li><a href="middle-of-article.html" class="nav-item">Middle of article</a></li>
-                        <li><a href="bottom-of-article-embed.html" class="nav-item">Bottom of article embed</a></li>
-                        <li><a href="dynamic-cta.html" class="nav-item">Dynamic cta</a></li>
-                        <li><a href="update-askinbio.html" class="nav-item">Update askinbio</a></li>
-                    </ul>
-                </div>
-                <div class="nav-right">
-                    <a href="../index.html" class="logo-link">
-                        <div class="logo">
-                            <img src="../assets/images/theatlantic.png" alt="The Atlantic" class="logo-image">
+            <!-- Top Navigation Bar -->
+            <div style="display: flex; justify-content: center; padding: 10px 0; border-bottom: 1px solid #e5e5e5;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Family</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Nav Bar with Logo -->
+            <nav class="main-nav" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0;">
+                <div style="display: flex; align-items: center; gap: 30px;">
+                    <nav>
+                        <div class="nav-dropdown" id="navDropdown">
+                            <button class="nav-dropdown-button" id="navDropdownButton" style="background: #333; color: white; padding: 10px 15px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px;">
+                                Widgets
+                                <svg class="nav-dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M6 9L12 15L18 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="nav-dropdown-menu" id="navDropdownMenu" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px; z-index: 1000;">
+                                <a href="search-up-top.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Search up top</a>
+                                <a href="new-green.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">New green</a>
+                                <a href="side-rail.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Side rail</a>
+                                <a href="top-of-article-old.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Top of article (old)</a>
+                                <a href="middle-of-article.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Middle of article</a>
+                                <a href="bottom-of-article-embed.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Bottom of article embed</a>
+                                <a href="dynamic-cta.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Dynamic cta</a>
+                                <a href="top-rail-search.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Top rail search</a>
+                                <a href="update-askinbio.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500; border-bottom: 1px solid #f0f0f0;">Update askinbio</a>
+                                <a href="header-html.html" style="display: block; padding: 12px 16px; text-decoration: none; color: #333; font-size: 12px; font-weight: 500;">Header HTML</a>
+                            </div>
                         </div>
-                    </a>
-                    <span class="site-name">The Atlantic</span>
-                    <a href="#" class="sign-in">Sign In</a>
-                    <button class="subscribe-btn">Subscribe</button>
+                    </nav>
+
+                    <!-- Additional nav items inline -->
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Pacific Daily</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
+                </div>
+
+                <div class="logo" style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px; position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC</div>
+
+                <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                    <span style="color: #6c757d;">•</span>
+                    <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
                 </div>
             </nav>
         </div>
@@ -245,6 +647,8 @@
         </div>
 
     </div>
+
+    <!-- Attribution and Sources sections will be dynamically inserted here -->
 
     <script>
         // AI Chat Implementation
@@ -294,6 +698,12 @@
             async streamAIResponse() {
                 this.isStreaming = true;
 
+                // Create loading stages
+                await this.showLoadingStages();
+
+                // Show attribution and sources before AI response
+                await this.showAttributionAndSources();
+
                 // Create message container for streaming
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'message assistant';
@@ -312,6 +722,7 @@
                     } else {
                         await this.simulateStreaming(answerDiv);
                     }
+
                 } catch (error) {
                     console.error('Streaming error:', error);
                     answerDiv.innerHTML = '<div class="error-message">Sorry, I encountered an error. Please try again.</div>';
@@ -324,7 +735,8 @@
 
             async streamFromAPI(answerDiv) {
                 // Real API streaming implementation with OpenAI
-                const response = await fetch('http://localhost:3000/api/chat', {
+                // Use relative path to work with any server configuration
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ messages: this.messages })
@@ -451,6 +863,307 @@
                 container.appendChild(chipsContainer);
             }
 
+            async showLoadingStages() {
+                const stages = [
+                    { text: 'Generating answer...', duration: 1500 },
+                    { text: 'Getting sources...', duration: 1800, showSkeleton: true },
+                    { text: 'Getting attributions...', duration: 1200, hideSkeleton: true }
+                ];
+
+                // Create loading stage container
+                const loadingContainer = document.createElement('div');
+                loadingContainer.className = 'loading-stage-container';
+                loadingContainer.id = 'loadingStages';
+
+                // Create single stage element that will be reused
+                const stageDiv = document.createElement('div');
+                stageDiv.className = 'loading-stage';
+
+                const spinnerDiv = document.createElement('div');
+                spinnerDiv.className = 'spinner-icon';
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'stage-text';
+
+                stageDiv.appendChild(spinnerDiv);
+                stageDiv.appendChild(textDiv);
+                loadingContainer.appendChild(stageDiv);
+
+                this.conversationContainer.appendChild(loadingContainer);
+
+                // Animate through stages
+                for (let i = 0; i < stages.length; i++) {
+                    const stage = stages[i];
+
+                    // Update text
+                    textDiv.textContent = stage.text;
+
+                    // Fade in
+                    stageDiv.classList.add('visible');
+
+                    // Show skeleton sources during "Getting sources" stage
+                    if (stage.showSkeleton) {
+                        setTimeout(() => {
+                            this.showSkeletonSources();
+                        }, 500);
+                    }
+
+                    // Hide skeleton sources during "Getting attributions" stage
+                    if (stage.hideSkeleton) {
+                        const skeletonSources = document.getElementById('skeletonSources');
+                        if (skeletonSources) {
+                            skeletonSources.style.opacity = '0';
+                            setTimeout(() => {
+                                skeletonSources.remove();
+                            }, 300);
+                        }
+                    }
+
+                    // Wait for stage duration
+                    await new Promise(resolve => setTimeout(resolve, stage.duration));
+
+                    // Fade out (except for last stage)
+                    if (i < stages.length - 1) {
+                        stageDiv.classList.remove('visible');
+                        await new Promise(resolve => setTimeout(resolve, 400)); // Wait for fade out
+                    }
+                }
+
+                // Remove loading stages after completion
+                setTimeout(() => {
+                    loadingContainer.remove();
+                }, 500);
+            }
+
+            async showSkeletonSources() {
+                // Create skeleton sources if they don't exist
+                let skeletonSources = document.getElementById('skeletonSources');
+                if (!skeletonSources) {
+                    skeletonSources = document.createElement('div');
+                    skeletonSources.id = 'skeletonSources';
+                    skeletonSources.className = 'skeleton-sources';
+
+                    // Create 4 skeleton cards
+                    for (let i = 0; i < 4; i++) {
+                        const skeletonCard = document.createElement('div');
+                        skeletonCard.className = 'skeleton-source-card';
+                        skeletonCard.innerHTML = `
+                            <div class="skeleton-header">
+                                <div class="skeleton-favicon"></div>
+                                <div class="skeleton-domain"></div>
+                            </div>
+                            <div class="skeleton-title"></div>
+                            <div class="skeleton-snippet"></div>
+                            <div class="skeleton-snippet"></div>
+                            <div class="skeleton-attribution"></div>
+                        `;
+                        skeletonSources.appendChild(skeletonCard);
+                    }
+
+                    // Insert after user message but before AI response
+                    this.conversationContainer.appendChild(skeletonSources);
+                }
+
+                skeletonSources.style.display = 'grid';
+                skeletonSources.style.opacity = '0';
+
+                setTimeout(() => {
+                    skeletonSources.style.transition = 'opacity 0.3s ease';
+                    skeletonSources.style.opacity = '1';
+                }, 100);
+            }
+
+            async showAttributionAndSources() {
+                // Remove skeleton sources completely
+                const skeletonSources = document.getElementById('skeletonSources');
+                if (skeletonSources) {
+                    skeletonSources.style.opacity = '0';
+                    setTimeout(() => {
+                        skeletonSources.remove();
+                    }, 300);
+                }
+
+                // Create attribution section
+                const attributionSection = document.createElement('div');
+                attributionSection.className = 'attribution-section';
+                attributionSection.id = 'attributionSection';
+                attributionSection.innerHTML = `
+                    <div class="attribution-title">Source Attribution</div>
+                    <div class="combined-attribution-bar">
+                        <div class="attribution-segment primary" data-width="38"></div>
+                        <div class="attribution-segment secondary" data-width="38"></div>
+                        <div class="attribution-segment tertiary" data-width="24"></div>
+                    </div>
+                    <div class="attribution-labels">
+                        <div class="attribution-label primary">38% Popular Science</div>
+                        <div class="attribution-label secondary">38% Scientific American</div>
+                        <div class="attribution-label tertiary">24% Other</div>
+                    </div>
+                `;
+
+                // Create sources section
+                const sourcesSection = document.createElement('div');
+                sourcesSection.className = 'sources-section';
+                sourcesSection.id = 'sourcesSection';
+                sourcesSection.innerHTML = `
+                    <div class="sources-title">Sources</div>
+                    <div class="sources-carousel-wrapper">
+                        <button class="carousel-button" id="prevButton">‹</button>
+                        <div class="sources-carousel-container">
+                            <div class="sources-carousel" id="sourcesCarousel">
+                            <div class="source-card">
+                                <div class="source-header">
+                                    <div class="source-favicon">PS</div>
+                                    <div class="source-domain">Popular Science</div>
+                                </div>
+                                <div class="source-title">The Evolution of Human Intelligence</div>
+                                <div class="source-snippet">Recent studies show brain development accelerated through evolutionary pressure...</div>
+                                <div class="source-attribution">38% attribution</div>
+                            </div>
+                            <div class="source-card">
+                                <div class="source-header">
+                                    <div class="source-favicon">SA</div>
+                                    <div class="source-domain">Scientific American</div>
+                                </div>
+                                <div class="source-title">Cognitive Development in Early Ancestors</div>
+                                <div class="source-snippet">Archaeological evidence suggests tool use drove brain evolution...</div>
+                                <div class="source-attribution">38% attribution</div>
+                            </div>
+                            <div class="source-card">
+                                <div class="source-header">
+                                    <div class="source-favicon">NE</div>
+                                    <div class="source-domain">Nature</div>
+                                </div>
+                                <div class="source-title">Neurological Studies on Brain Expansion</div>
+                                <div class="source-snippet">Comparative analysis reveals key differences between human and primate structures...</div>
+                                <div class="source-attribution">24% attribution</div>
+                            </div>
+                            <div class="source-card">
+                                <div class="source-header">
+                                    <div class="source-favicon">SC</div>
+                                    <div class="source-domain">Science</div>
+                                </div>
+                                <div class="source-title">Neural Pathways in Human Evolution</div>
+                                <div class="source-snippet">Research shows how neural complexity increased over time...</div>
+                                <div class="source-attribution">18% attribution</div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="carousel-button" id="nextButton">›</button>
+                    </div>
+                    <div class="carousel-nav">
+                        <div class="carousel-indicators">
+                            <div class="carousel-dot active" data-card="0"></div>
+                            <div class="carousel-dot" data-card="1"></div>
+                            <div class="carousel-dot" data-card="2"></div>
+                            <div class="carousel-dot" data-card="3"></div>
+                        </div>
+                    </div>
+                `;
+
+                // Insert attribution and sources after user question but before AI response
+                this.conversationContainer.appendChild(attributionSection);
+                this.conversationContainer.appendChild(sourcesSection);
+
+                // Animate attribution section
+                attributionSection.style.opacity = '0';
+                setTimeout(() => {
+                    attributionSection.style.transition = 'opacity 0.5s ease';
+                    attributionSection.style.opacity = '1';
+                }, 100);
+
+                // Animate attribution bar segments
+                setTimeout(() => {
+                    const segments = attributionSection.querySelectorAll('.attribution-segment');
+                    segments.forEach((segment, index) => {
+                        setTimeout(() => {
+                            const targetWidth = segment.getAttribute('data-width');
+                            segment.style.width = targetWidth + '%';
+                        }, index * 200);
+                    });
+                }, 500);
+
+                // Show sources section
+                setTimeout(() => {
+                    sourcesSection.style.opacity = '0';
+                    sourcesSection.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        sourcesSection.style.opacity = '1';
+                        // Initialize carousel after sources are visible
+                        this.initializeCarousel();
+                    }, 100);
+                }, 800);
+            }
+
+            initializeCarousel() {
+                const carousel = document.getElementById('sourcesCarousel');
+                const prevButton = document.getElementById('prevButton');
+                const nextButton = document.getElementById('nextButton');
+                const dots = document.querySelectorAll('.carousel-dot');
+
+                let currentIndex = 0;
+                const cardsPerView = 3; // Show 3 cards at a time
+
+                // Initial setup
+                updateCarousel();
+
+                // Add click handlers for arrows
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateCarousel();
+                        }
+                    });
+                }
+
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        if (currentIndex < Math.max(0, dots.length - cardsPerView)) {
+                            currentIndex++;
+                            updateCarousel();
+                        }
+                    });
+                }
+
+                // Add click handlers for dots
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = Math.min(index, Math.max(0, dots.length - cardsPerView));
+                        updateCarousel();
+                    });
+                });
+
+                function updateCarousel() {
+                    // Calculate the transform distance
+                    const cardWidth = 216; // 200px width + 16px gap
+                    const translateX = -currentIndex * cardWidth;
+
+                    // Apply transform to carousel
+                    if (carousel) {
+                        carousel.style.transform = `translateX(${translateX}px)`;
+                    }
+
+                    // Update dots - highlight the visible range
+                    dots.forEach((dot, index) => {
+                        const isVisible = index >= currentIndex && index < currentIndex + cardsPerView;
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+
+                    // Update button states
+                    if (prevButton) {
+                        prevButton.disabled = currentIndex === 0;
+                        prevButton.style.background = currentIndex === 0 ? '#bdc3c7' : '#e74c3c';
+                    }
+
+                    if (nextButton) {
+                        const maxIndex = Math.max(0, dots.length - cardsPerView);
+                        nextButton.disabled = currentIndex >= maxIndex;
+                        nextButton.style.background = currentIndex >= maxIndex ? '#bdc3c7' : '#e74c3c';
+                    }
+                }
+            }
+
 
             async initializeWithQuery(query) {
                 document.title = `"${query}" - AI Search Results - The Atlantic`;
@@ -471,6 +1184,24 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Navigation dropdown functionality
+            const navDropdown = document.getElementById('navDropdown');
+            const navDropdownButton = document.getElementById('navDropdownButton');
+            const navDropdownMenu = document.getElementById('navDropdownMenu');
+
+            if (navDropdownButton && navDropdownMenu) {
+                navDropdownButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navDropdownMenu.style.display = navDropdownMenu.style.display === 'block' ? 'none' : 'block';
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function() {
+                    navDropdownMenu.style.display = 'none';
+                });
+            }
+
+            // Initialize chat
             const chat = new AIChat();
             const query = getQueryParameter('q');
 

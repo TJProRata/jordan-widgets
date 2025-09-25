@@ -7,10 +7,29 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="site-header">
+    <!-- Combined Header -->
+    <header class="site-header" style="border-bottom: 1px solid #000;">
         <div class="container">
-            <div class="header-container">
+            <!-- Top Navigation Bar -->
+            <div style="display: flex; justify-content: center; padding: 10px 0; border-bottom: 1px solid #e5e5e5;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Family</a></li>
+                </ul>
+            </div>
+
+            <!-- Second Nav Bar with Logo -->
+            <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 0;">
+                <div style="display: flex; align-items: center; gap: 30px;">
                 <nav>
                     <div class="nav-dropdown" id="navDropdown">
                         <button class="nav-dropdown-button" id="navDropdownButton">
@@ -27,14 +46,27 @@
                             <a href="middle-of-article.html">Middle of article</a>
                             <a href="bottom-of-article-embed.html" class="active">Bottom of article embed</a>
                             <a href="dynamic-cta.html">Dynamic cta</a>
+                            <a href="top-rail-search.html">Top rail search</a>
                             <a href="update-askinbio.html">Update askinbio</a>
                             <a href="header-html.html">Header HTML</a>
                         </div>
                     </div>
                 </nav>
-                <div class="logo">THE PACIFIC</div>
-                <div class="header-right">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+                    <!-- Additional nav items inline -->
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Atlantic Daily</a>
+                    <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
+                </div>
+
+                <div class="logo" style="font-size: 28px; font-weight: 900; letter-spacing: -0.5px; position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC</div>
+
+                <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                    <span style="color: #6c757d;">•</span>
+                    <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px; cursor: pointer;">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>

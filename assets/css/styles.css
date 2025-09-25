@@ -28,6 +28,99 @@ body {
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
+/* Atlantic-style Navigation Bar */
+.atlantic-nav {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0;
+    font-size: 14px;
+}
+
+.atlantic-nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.atlantic-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+.atlantic-nav-item {
+    margin: 0;
+}
+
+.atlantic-nav-link {
+    display: block;
+    padding: 12px 16px;
+    color: #2c2c2c;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.atlantic-nav-link:hover {
+    color: #e74c3c;
+    background: #f8f9fa;
+}
+
+.atlantic-nav-link.active {
+    color: #e74c3c;
+    border-bottom-color: #e74c3c;
+}
+
+/* Magazine sections navigation */
+.magazine-nav {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px 0;
+}
+
+.magazine-nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.magazine-sections {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.magazine-section-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.magazine-section-link:hover {
+    color: #e74c3c;
+}
+
+.magazine-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 13px;
+    color: #6c757d;
+}
+
 /* Header Container for Dropdown Layout */
 .header-container {
     display: flex;

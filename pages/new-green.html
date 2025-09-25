@@ -492,12 +492,36 @@
         .related-item:last-child {
             border-bottom: none;
         }
+
+        .continue-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
+    <!-- Combined Header -->
+    <header class="header" style="border-bottom: 2px solid #333;">
+        <!-- Top Navigation Bar -->
+        <div style="background: #fff; border-bottom: 1px solid #e5e5e5;">
+            <div style="max-width: 1400px; margin: 0 auto; padding: 10px 20px; display: flex; justify-content: center;">
+                <ul style="display: flex; list-style: none; margin: 0; padding: 0; gap: 30px;">
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Latest</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Politics</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Ideas</a></li>
+                    <li><a href="#" style="color: #e74c3c; text-decoration: none; font-size: 14px; font-weight: 500;">Science</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Culture</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Health</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Education</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Planet</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Books</a></li>
+                    <li><a href="#" style="color: #333; text-decoration: none; font-size: 14px; font-weight: 500;">Technology</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Second Nav Bar with Logo Inline -->
+        <div class="header-container" style="background: white; position: relative;">
             <nav>
                 <div class="nav-dropdown" id="navDropdown">
                     <button class="nav-dropdown-button" id="navDropdownButton">
@@ -514,14 +538,29 @@
                         <a href="middle-of-article.html">Middle of article</a>
                         <a href="bottom-of-article-embed.html">Bottom of article embed</a>
                         <a href="dynamic-cta.html">Dynamic cta</a>
+                        <a href="top-rail-search.html">Top rail search</a>
                         <a href="update-askinbio.html">Update askinbio</a>
                         <a href="header-html.html">Header HTML</a>
                     </div>
                 </div>
             </nav>
-            <div class="logo">THE PACIFIC SCIENCE</div>
-            <div class="header-right">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+
+            <!-- Additional nav items inline -->
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Newsletters</a>
+                <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Podcasts</a>
+                <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">The Pacific Daily</a>
+                <a href="#" style="color: #6c757d; text-decoration: none; font-size: 13px;">Magazine</a>
+            </div>
+
+            <!-- Logo centered -->
+            <div class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);">THE PACIFIC SCIENCE</div>
+
+            <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                <span style="color: #6c757d; font-size: 13px;">December 2024 Issue</span>
+                <span style="color: #6c757d;">•</span>
+                <a href="#" style="color: #e74c3c; text-decoration: none; font-size: 13px; font-weight: 600;">Subscribe</a>
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width: 20px; height: 20px;">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.35-4.35"></path>
                 </svg>
@@ -653,6 +692,9 @@
                         <div class="related-section" id="relatedSection" style="display: none;">
                             <h4>Related</h4>
                             <div class="related-item">What are the benefits of using a triple-laser projector like JMGO's N1S Pro?</div>
+                            <button class="continue-button" id="continueButton" style="margin-top: 15px; width: 100%; padding: 12px; background: linear-gradient(135deg, #FDB500 0%, #DB5369 50%, #897FE2 100%); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                                Continue in new page →
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -874,6 +916,28 @@
                     handleAsk();
                 });
             });
+
+            // Continue in new page button
+            const continueButton = document.getElementById('continueButton');
+            if (continueButton) {
+                continueButton.addEventListener('click', function() {
+                    // Get the current question from the input field or use the related question
+                    let query = askInput.value.trim();
+
+                    // If there's no query in the input, use the related question
+                    if (!query) {
+                        const relatedItem = document.querySelector('.related-item');
+                        if (relatedItem) {
+                            query = relatedItem.textContent.trim();
+                        }
+                    }
+
+                    // Open in ai-search-results.html with the query
+                    if (query) {
+                        window.open(`ai-search-results.html?q=${encodeURIComponent(query)}`, '_blank');
+                    }
+                });
+            }
 
             // Collapse widget when clicking outside
             document.addEventListener('click', function(e) {

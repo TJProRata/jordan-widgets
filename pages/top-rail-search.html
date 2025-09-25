@@ -3,8 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain-Computer Interfaces Restore Speech to Paralyzed Patients - The Pacific</title>
+    <title>Space Elevators Move From Fiction to Reality - The Pacific</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        /* Header improvements */
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Override sticky search widget to float at top instead of bottom */
+        .sticky-search-widget {
+            position: fixed !important;
+            top: 110px !important;  /* Position below the two-tier header */
+            bottom: auto !important;  /* Remove bottom positioning */
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 9999 !important;
+            width: 400px !important;
+            max-width: calc(100vw - 40px) !important;
+        }
+
+        /* Add padding to main content so it doesn't hide behind fixed elements */
+        body {
+            padding-top: 180px; /* Account for two-tier fixed header + search widget */
+            margin: 0;
+        }
+
+        /* Ensure main content has proper spacing */
+        .main-content {
+            padding-top: 20px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+
+            .sticky-search-widget {
+                top: 60px !important;
+                width: calc(100% - 20px) !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Combined Header -->
@@ -42,11 +88,11 @@
                             <a href="search-up-top.html">Search up top</a>
                             <a href="new-green.html">New green</a>
                             <a href="side-rail.html">Side rail</a>
-                            <a href="top-of-article-old.html" class="active">Top of article (old)</a>
+                            <a href="top-of-article-old.html">Top of article (old)</a>
                             <a href="middle-of-article.html">Middle of article</a>
                             <a href="bottom-of-article-embed.html">Bottom of article embed</a>
                             <a href="dynamic-cta.html">Dynamic cta</a>
-                            <a href="top-rail-search.html">Top rail search</a>
+                            <a href="top-rail-search.html" class="active">Top rail search</a>
                             <a href="update-askinbio.html">Update askinbio</a>
                             <a href="header-html.html">Header HTML</a>
                         </div>
@@ -75,29 +121,13 @@
         </div>
     </header>
 
-    <!-- Search Widget -->
-    <div class="search-widget-container">
-        <div class="container">
-            <div class="search-widget">
-                <div class="search-input-wrapper">
-                    <input type="text" class="search-input" placeholder="Search articles, topics, or authors..." id="searchInput">
-                    <button type="button" class="search-button" id="searchButton">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Article -->
     <main class="main-content">
         <div class="container">
             <article class="article">
                 <div class="article-header">
                     <div class="article-category">TECHNOLOGY</div>
-                    <h1 class="article-title">Brain-Computer Interfaces Restore Speech to Paralyzed Patients</h1>
+                    <h1 class="article-title">Space Elevators Move From Fiction to Reality</h1>
                     <p class="article-subtitle">How chatbots keep you talking</p>
                     <div class="article-meta">
                         <span class="author">By Lila Shroff</span>
@@ -171,25 +201,95 @@
         </div>
     </footer>
 
+    <!-- Sticky Floating Search Widget -->
+    <div class="sticky-search-widget">
+        <div class="sticky-search-container">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Ask anything..." id="stickySearchInput">
+                <button type="button" class="search-button" id="stickySearchButton">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Dynamic Questions for each scroll quadrant
+        const SCROLL_QUESTIONS = [
+            "Ask anything...", // Default/Top (0-25%)
+            "How do chatbots escalate promises?", // First quadrant (25-50%)
+            "What psychological tricks do AIs use?", // Second quadrant (50-75%)
+            "Why prioritize engagement over helpfulness?", // Third quadrant (75-90%)
+            "Are AI relationships replacing human connections?" // Bottom quadrant (90-100%)
+        ];
+
+        let currentQuestionIndex = 0;
+        let isTransitioning = false;
+
         // Handle search functionality
         function handleSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const query = searchInput.value.trim();
+            const searchInput = document.querySelector('#stickySearchInput');
+            const query = searchInput ? searchInput.value.trim() : '';
             if (query) {
-                // Add subtle search animation
-                const searchButton = document.getElementById('searchButton');
-                if (searchButton) {
-                    searchButton.style.transform = 'translateY(-50%) scale(0.8)';
-                    setTimeout(() => {
-                        searchButton.style.transform = 'translateY(-50%) scale(1)';
-                    }, 150);
-                }
+                window.location.href = `ai-search-results.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Update placeholder with fade transition
+        function updatePlaceholder(newIndex) {
+            if (newIndex === currentQuestionIndex || isTransitioning) return;
+
+            const searchInput = document.querySelector('#stickySearchInput');
+            if (!searchInput || searchInput.value.trim() !== '') return; // Don't change if user is typing
+
+            isTransitioning = true;
+            currentQuestionIndex = newIndex;
+
+            // Fade out
+            searchInput.style.transition = 'opacity 0.3s ease-in-out';
+            searchInput.style.opacity = '0.5';
+
+            setTimeout(() => {
+                // Change placeholder
+                searchInput.placeholder = SCROLL_QUESTIONS[newIndex];
+
+                // Fade in
+                searchInput.style.opacity = '1';
 
                 setTimeout(() => {
-                    window.location.href = `ai-search-results.html?q=${encodeURIComponent(query)}`;
-                }, 200);
-            }
+                    isTransitioning = false;
+                }, 300);
+            }, 150);
+        }
+
+        // Calculate scroll quadrant
+        function getScrollQuadrant() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+            if (documentHeight <= 0) return 0; // No scroll available
+
+            const scrollPercentage = (scrollTop / documentHeight) * 100;
+
+            if (scrollPercentage < 5) return 0;  // Top - "Ask anything..."
+            else if (scrollPercentage < 25) return 1; // First quarter
+            else if (scrollPercentage < 50) return 2; // Second quarter
+            else if (scrollPercentage < 75) return 3; // Third quarter
+            else return 4; // Bottom quarter
+        }
+
+        // Throttled scroll handler
+        let scrollTimeout;
+        function handleScroll() {
+            if (scrollTimeout) return;
+
+            scrollTimeout = setTimeout(() => {
+                const quadrant = getScrollQuadrant();
+                updatePlaceholder(quadrant);
+                scrollTimeout = null;
+            }, 100); // Throttle to 100ms
         }
 
         // Navigation Dropdown Functionality
@@ -223,9 +323,10 @@
 
         // Add event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.querySelector('#stickySearchInput');
+            const searchButton = document.querySelector('#stickySearchButton');
 
+            // Search functionality
             if (searchInput) {
                 searchInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
@@ -233,21 +334,32 @@
                     }
                 });
 
-                // Enhanced focus effects
-                searchInput.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'translateY(-1px)';
-                });
-
-                searchInput.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'translateY(0)';
+                // Reset to current question when input is cleared
+                searchInput.addEventListener('input', function(e) {
+                    if (e.target.value === '') {
+                        setTimeout(() => {
+                            if (e.target.value === '') { // Double-check after timeout
+                                e.target.placeholder = SCROLL_QUESTIONS[currentQuestionIndex];
+                            }
+                        }, 100);
+                    }
                 });
             }
 
             if (searchButton) {
                 searchButton.addEventListener('click', handleSearch);
             }
+
+            // Scroll-based placeholder changes
+            window.addEventListener('scroll', handleScroll, { passive: true });
+
+            // Set initial state
+            const initialQuadrant = getScrollQuadrant();
+            currentQuestionIndex = initialQuadrant;
+            if (searchInput) {
+                searchInput.placeholder = SCROLL_QUESTIONS[initialQuadrant];
+            }
         });
     </script>
-
 </body>
 </html>
